@@ -3,10 +3,10 @@ Authentication utilities for JWT token management and password hashing.
 """
 
 import os
+import hashlib
 from datetime import datetime, timedelta
 from typing import Optional, Union
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from fastapi import HTTPException, status
 from dotenv import load_dotenv
 
@@ -18,8 +18,8 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 REFRESH_TOKEN_EXPIRE_DAYS = int(os.getenv("REFRESH_TOKEN_EXPIRE_DAYS", "7"))
 
-# Password hashing context
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Simple password hashing (for development - use bcrypt in production)
+SALT = "learning_management_system_salt_2024"
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -33,12 +33,14 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         bool: True if password matches, False otherwise
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    # Simple hash verification (for development)
+    expected_hash = hashlib.sha256((plain_password + SALT).encode()).hexdigest()
+    return expected_hash == hashed_password
 
 
 def get_password_hash(password: str) -> str:
     """
-    Hash a password using bcrypt.
+    Hash a password using SHA256 with salt.
     
     Args:
         password: Plain text password
@@ -46,7 +48,8 @@ def get_password_hash(password: str) -> str:
     Returns:
         str: Hashed password
     """
-    return pwd_context.hash(password)
+    # Simple hash (for development - use bcrypt in production)
+    return hashlib.sha256((password + SALT).encode()).hexdigest()
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
