@@ -11,6 +11,9 @@ from .certificate import Certificate
 from .transaction import Transaction, InstructorPayout, TransactionStatus, PaymentMethod
 from .instructor_application import InstructorApplication, ApplicationStatus
 from .resource import LectureResource, ResourceDownload, ResourceType
+from .taxonomy import Tag, DifficultyConfiguration, course_tags
+from .system_settings import SystemSetting, EmailTemplate, PaymentGatewayConfiguration, SettingType
+from .legal import LegalDocument, UserPolicyAcceptance, PolicyUpdateNotification, DocumentType
 
 __all__ = [
     "User",
@@ -41,5 +44,16 @@ __all__ = [
     "ApplicationStatus",
     "LectureResource",
     "ResourceDownload",
-    "ResourceType"
+    "ResourceType",
+    "Tag",
+    "DifficultyConfiguration",
+    "course_tags",
+    "SystemSetting",
+    "EmailTemplate",
+    "PaymentGatewayConfiguration",
+    "SettingType",
+    "LegalDocument",
+    "UserPolicyAcceptance",
+    "PolicyUpdateNotification",
+    "DocumentType"
 ]

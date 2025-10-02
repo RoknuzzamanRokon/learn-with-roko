@@ -53,6 +53,7 @@ class CourseCreate(BaseModel):
     preview_video_url: Optional[str] = Field(None, description="Course preview video URL")
     allow_qa: bool = Field(True, description="Allow Q&A for this course")
     allow_notes: bool = Field(True, description="Allow notes for this course")
+    tag_ids: Optional[List[int]] = Field(None, description="List of tag IDs to assign to the course")
 
 
 class CourseUpdate(BaseModel):
@@ -68,6 +69,7 @@ class CourseUpdate(BaseModel):
     preview_video_url: Optional[str] = Field(None, description="Course preview video URL")
     allow_qa: Optional[bool] = Field(None, description="Allow Q&A for this course")
     allow_notes: Optional[bool] = Field(None, description="Allow notes for this course")
+    tag_ids: Optional[List[int]] = Field(None, description="List of tag IDs to assign to the course")
 
 
 class CourseStatusUpdate(BaseModel):
@@ -245,3 +247,4 @@ class CourseFullDetailResponse(CourseDetailResponse):
     """Extended course response with sections and lectures."""
     sections: List[SectionDetailResponse] = []
     category: Optional[CourseCategoryResponse] = None
+    tags: List[dict] = []  # Will contain tag information

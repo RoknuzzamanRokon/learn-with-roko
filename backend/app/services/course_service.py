@@ -10,6 +10,7 @@ from datetime import datetime
 
 from ..models.course import Course, CourseCategory, Section, Lecture, CourseStatus
 from ..models.user import User, UserRole
+from ..models.taxonomy import Tag
 from ..schemas.course import (
     CourseCreate, 
     CourseUpdate, 
@@ -174,7 +175,21 @@ class CourseService:
         
         course_dict = course_data.model_dump()
         course_dict['instructor_id'] = instructor_id
+        
+        # Extract tag_ids before creating course
+        tag_ids = course_dict.pop('tag_ids', None)
+        
         course = Course(**course_dict)
+        
+        # Assign tags if provided
+        if tag_ids:
+            tags = self.db.query(Tag).filter(
+                and_(
+                    Tag.id.in_(tag_ids),
+                    Tag.is_active == True
+                )
+            ).all()
+            course.tags = tags
         
         self.db.add(course)
         self.db.commit()
@@ -295,8 +310,22 @@ class CourseService:
         
         # Update course fields
         update_data = course_data.model_dump(exclude_unset=True)
+        
+        # Handle tag updates separately
+        tag_ids = update_data.pop('tag_ids', None)
+        
         for field, value in update_data.items():
             setattr(course, field, value)
+        
+        # Update tags if provided
+        if tag_ids is not None:
+            tags = self.db.query(Tag).filter(
+                and_(
+                    Tag.id.in_(tag_ids),
+                    Tag.is_active == True
+                )
+            ).all()
+            course.tags = tags
         
         self.db.commit()
         self.db.refresh(course)

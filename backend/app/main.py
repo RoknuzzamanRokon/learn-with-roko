@@ -35,7 +35,7 @@ app.add_middleware(
 )
 
 # Include routers
-from .routers import auth, roles, users, instructor_applications, courses, files, enrollments, notes, resources, quizzes, qa, certificates, analytics, moderation, transactions
+from .routers import auth, roles, users, instructor_applications, courses, files, enrollments, notes, resources, quizzes, qa, certificates, analytics, moderation, transactions, taxonomy, system_settings, legal
 
 app.include_router(auth.router, prefix="/api")
 app.include_router(roles.router, prefix="/api")
@@ -52,6 +52,9 @@ app.include_router(certificates.router, prefix="/api")
 app.include_router(analytics.router, prefix="/api")
 app.include_router(moderation.router, prefix="/api")
 app.include_router(transactions.router, prefix="/api")
+app.include_router(taxonomy.router, prefix="/api")
+app.include_router(system_settings.router, prefix="/api")
+app.include_router(legal.router, prefix="/api")
 
 # Custom exception handlers
 @app.exception_handler(RequestValidationError)

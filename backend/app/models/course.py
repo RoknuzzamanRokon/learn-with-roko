@@ -99,6 +99,9 @@ class Course(Base):
     quizzes = relationship("Quiz", back_populates="course", cascade="all, delete-orphan")
     certificates = relationship("Certificate", back_populates="course", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="course", cascade="all, delete-orphan")
+    
+    # Many-to-many relationship with tags
+    tags = relationship("Tag", secondary="course_tags", back_populates="courses")
 
     def __repr__(self):
         return f"<Course(id={self.id}, title='{self.title}', status='{self.status.value}')>"
