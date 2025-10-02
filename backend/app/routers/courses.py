@@ -117,6 +117,64 @@ async def delete_category(
     service.delete_category(category_id)
 
 
+# Public Course Catalog Endpoints
+@router.get("/catalog", response_model=CourseListPaginatedResponse)
+async def get_course_catalog(
+    search: Optional[str] = Query(None, description="Search term"),
+    category_id: Optional[int] = Query(None, description="Filter by category"),
+    difficulty_level: Optional[str] = Query(None, description="Filter by difficulty"),
+    is_free: Optional[bool] = Query(None, description="Filter by free courses"),
+    min_price: Optional[float] = Query(None, description="Minimum price"),
+    max_price: Optional[float] = Query(None, description="Maximum price"),
+    page: int = Query(1, ge=1, description="Page number"),
+    per_page: int = Query(20, ge=1, le=100, description="Items per page"),
+    db: Session = Depends(get_db)
+):
+    """Get published courses for public catalog (no authentication required)."""
+    # Build filters for published courses only
+    filters = CourseSearchFilters(
+        search=search,
+        category_id=category_id,
+        status="published",  # Only show published courses
+        difficulty_level=difficulty_level,
+        is_free=is_free,
+        min_price=min_price,
+        max_price=max_price
+    )
+    
+    service = CourseService(db)
+    courses, total = service.get_courses(filters, page=page, per_page=per_page)
+    
+    total_pages = math.ceil(total / per_page)
+    
+    return CourseListPaginatedResponse(
+        courses=[CourseListResponse.model_validate(course) for course in courses],
+        total=total,
+        page=page,
+        per_page=per_page,
+        total_pages=total_pages,
+        has_next=page < total_pages,
+        has_prev=page > 1
+    )
+
+
+@router.get("/catalog/{course_id}", response_model=CourseFullDetailResponse)
+async def get_course_catalog_detail(
+    course_id: int,
+    db: Session = Depends(get_db)
+):
+    """Get published course details for catalog (no authentication required)."""
+    service = CourseService(db)
+    course = service.get_course_by_id(course_id, include_sections=True)
+    if not course or course.status != CourseStatus.PUBLISHED:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Course not found or not published"
+        )
+    
+    return CourseFullDetailResponse.model_validate(course)
+
+
 # Course Endpoints
 @router.post("", response_model=CourseDetailResponse, status_code=status.HTTP_201_CREATED)
 async def create_course(

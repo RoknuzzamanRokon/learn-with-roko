@@ -261,6 +261,33 @@ class CourseService {
             throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
         }
     }
+
+    // Public Catalog Methods (no authentication required)
+    async getCourseCatalog(
+        filters?: CourseSearchFilters,
+        page: number = 1,
+        perPage: number = 20
+    ): Promise<CourseListPaginatedResponse> {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        params.append('per_page', perPage.toString());
+
+        if (filters) {
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value !== undefined && value !== null && value !== '') {
+                    params.append(key, value.toString());
+                }
+            });
+        }
+
+        const response = await fetch(`${API_BASE_URL}/courses/catalog?${params}`);
+        return this.handleResponse<CourseListPaginatedResponse>(response);
+    }
+
+    async getCourseCatalogDetail(courseId: number): Promise<CourseWithSections> {
+        const response = await fetch(`${API_BASE_URL}/courses/catalog/${courseId}`);
+        return this.handleResponse<CourseWithSections>(response);
+    }
 }
 
 export const courseService = new CourseService();
