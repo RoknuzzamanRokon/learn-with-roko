@@ -76,4 +76,4 @@ def test_validation_functions():
     data = {'name': 'John', 'email': 'john@example.com'}
     required_fields = ['name', 'email']
     validate_required_fields(data, required_fields)  # Should not raise
-    print("✓ Required fields validation 
+    print("✓ Required fields validation")
