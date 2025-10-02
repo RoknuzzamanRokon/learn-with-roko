@@ -9,6 +9,7 @@ from .assessment import Quiz, Question, QuizAttempt, QuestionType
 from .interaction import Note, QAQuestion, QAAnswer
 from .certificate import Certificate
 from .transaction import Transaction, InstructorPayout, TransactionStatus, PaymentMethod
+from .instructor_application import InstructorApplication, ApplicationStatus
 
 __all__ = [
     "User",
@@ -34,5 +35,7 @@ __all__ = [
     "Transaction",
     "InstructorPayout",
     "TransactionStatus",
-    "PaymentMethod"
+    "PaymentMethod",
+    "InstructorApplication",
+    "ApplicationStatus"
 ]
