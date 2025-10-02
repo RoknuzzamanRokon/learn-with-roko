@@ -60,29 +60,33 @@ class User(Base):
         """Return the user's full name."""
         return f"{self.first_name} {self.last_name}"
 
-    def has_permission(self, permission: str) -> bool:
+    def has_permission(self, permission) -> bool:
         """
         Check if user has a specific permission based on their role.
-        This will be expanded with a proper permission system.
+        
+        Args:
+            permission: Permission enum or string to check
+            
+        Returns:
+            bool: True if user has the permission, False otherwise
         """
-        # Super Admin has all permissions
-        if self.role == UserRole.SUPER_ADMIN:
-            return True
+        from ..permissions import Permission, PermissionChecker
         
-        # Basic role-based permissions (to be expanded)
-        instructor_permissions = [
-            "create_course", "update_own_course", "view_own_analytics",
-            "respond_to_qa", "create_quiz", "view_own_students"
-        ]
+        # Handle string permissions for backward compatibility
+        if isinstance(permission, str):
+            try:
+                permission = Permission(permission)
+            except ValueError:
+                return False
         
-        learner_permissions = [
-            "enroll_course", "view_own_progress", "create_note",
-            "ask_question", "take_quiz"
-        ]
+        return PermissionChecker.has_permission(self.role, permission)
+    
+    def get_permissions(self) -> set:
+        """
+        Get all permissions for this user's role.
         
-        if self.role == UserRole.INSTRUCTOR:
-            return permission in instructor_permissions
-        elif self.role == UserRole.LEARNER:
-            return permission in learner_permissions
-        
-        return False
+        Returns:
+            set: Set of Permission enums
+        """
+        from ..permissions import PermissionChecker
+        return PermissionChecker.get_role_permissions(self.role)
