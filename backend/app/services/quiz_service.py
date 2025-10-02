@@ -450,6 +450,11 @@ class QuizService:
         db.commit()
         db.refresh(attempt)
         
+        # If quiz was passed, check for course completion and certificate generation
+        if attempt.is_passed:
+            from ..services.certificate_service import CertificateService
+            CertificateService.update_course_progress(db, attempt.user_id, quiz.course_id)
+        
         return attempt
 
     @staticmethod

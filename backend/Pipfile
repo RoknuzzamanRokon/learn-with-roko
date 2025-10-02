@@ -15,6 +15,7 @@ pydantic = "*"
 python-dotenv = "*"
 email-validator = "*"
 alembic = "*"
+reportlab = "*"
 
 [dev-packages]
 

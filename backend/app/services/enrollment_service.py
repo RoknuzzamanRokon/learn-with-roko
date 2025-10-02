@@ -231,6 +231,10 @@ class EnrollmentService:
             if course_progress.completion_percentage >= 100 and not enrollment.is_completed:
                 enrollment.is_completed = True
                 enrollment.completed_at = datetime.utcnow()
+                
+                # Trigger certificate generation check
+                from ..services.certificate_service import CertificateService
+                CertificateService.update_course_progress(self.db, user_id, course_id)
         
         self.db.commit()
     

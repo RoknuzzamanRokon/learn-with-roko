@@ -6,3 +6,4 @@ export * from './note';
 export * from './resource';
 export * from './quiz';
 export * from './qa';
+export * from './certificate';

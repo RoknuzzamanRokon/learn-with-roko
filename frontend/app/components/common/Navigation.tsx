@@ -35,6 +35,13 @@ export const Navigation: React.FC = () => {
               Browse Courses
             </Link>
 
+            <Link
+              href="/verify-certificate"
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
+              Verify Certificate
+            </Link>
+
             {isAuthenticated ? (
               <>
                 <Link
@@ -42,6 +49,13 @@ export const Navigation: React.FC = () => {
                   className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   Dashboard
+                </Link>
+
+                <Link
+                  href="/certificates"
+                  className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  My Certificates
                 </Link>
 
                 {user?.role === "instructor" && (

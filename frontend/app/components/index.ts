@@ -5,3 +5,7 @@ export * from './catalog/CourseFilters';
 export * from './catalog/CourseDetail';
 export * from './catalog/PaymentModal';
 export * from './common/Navigation';
+export * from './common/CertificateVerification';
+export * from './dashboard/CertificateCard';
+export * from './dashboard/CertificatesPortfolio';
+export * from './learn/CourseCompletionStatus';
