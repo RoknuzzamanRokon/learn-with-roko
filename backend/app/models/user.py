@@ -54,6 +54,14 @@ class User(Base):
     instructor_applications = relationship("InstructorApplication", foreign_keys="InstructorApplication.user_id", back_populates="applicant", cascade="all, delete-orphan")
     resource_downloads = relationship("ResourceDownload", back_populates="user", cascade="all, delete-orphan")
     policy_acceptances = relationship("UserPolicyAcceptance", back_populates="user", cascade="all, delete-orphan")
+    
+    # Communication relationships
+    created_announcements = relationship("Announcement", foreign_keys="Announcement.instructor_id", back_populates="instructor", cascade="all, delete-orphan")
+    announcement_reads = relationship("AnnouncementRead", back_populates="user", cascade="all, delete-orphan")
+    sent_messages = relationship("Message", foreign_keys="Message.sender_id", back_populates="sender", cascade="all, delete-orphan")
+    received_messages = relationship("Message", foreign_keys="Message.recipient_id", back_populates="recipient")
+    sent_bulk_messages = relationship("BulkMessage", foreign_keys="BulkMessage.sender_id", back_populates="sender", cascade="all, delete-orphan")
+    received_bulk_messages = relationship("BulkMessageRecipient", back_populates="recipient")
 
     def __repr__(self):
         return f"<User(id={self.id}, email='{self.email}', role='{self.role.value}')>"

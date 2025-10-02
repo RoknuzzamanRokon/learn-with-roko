@@ -35,7 +35,7 @@ app.add_middleware(
 )
 
 # Include routers
-from .routers import auth, roles, users, instructor_applications, courses, files, enrollments, notes, resources, quizzes, qa, certificates, analytics, moderation, transactions, taxonomy, system_settings, legal
+from .routers import auth, roles, users, instructor_applications, courses, files, enrollments, notes, resources, quizzes, qa, certificates, analytics, instructor_analytics, communication, moderation, transactions, taxonomy, system_settings, legal
 
 app.include_router(auth.router, prefix="/api")
 app.include_router(roles.router, prefix="/api")
@@ -50,6 +50,8 @@ app.include_router(quizzes.router, prefix="/api")
 app.include_router(qa.router, prefix="/api")
 app.include_router(certificates.router, prefix="/api")
 app.include_router(analytics.router, prefix="/api")
+app.include_router(instructor_analytics.router, prefix="/api")
+app.include_router(communication.router, prefix="/api")
 app.include_router(moderation.router, prefix="/api")
 app.include_router(transactions.router, prefix="/api")
 app.include_router(taxonomy.router, prefix="/api")

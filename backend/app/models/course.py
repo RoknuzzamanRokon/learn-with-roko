@@ -100,6 +100,11 @@ class Course(Base):
     certificates = relationship("Certificate", back_populates="course", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="course", cascade="all, delete-orphan")
     
+    # Communication relationships
+    announcements = relationship("Announcement", back_populates="course", cascade="all, delete-orphan")
+    messages = relationship("Message", back_populates="course")
+    bulk_messages = relationship("BulkMessage", back_populates="course", cascade="all, delete-orphan")
+    
     # Many-to-many relationship with tags
     tags = relationship("Tag", secondary="course_tags", back_populates="courses")
 
