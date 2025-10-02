@@ -2,3 +2,7 @@ export * from './user';
 export * from './course';
 export * from './enrollment';
 export * from './instructor-application';
+export * from './note';
+export * from './resource';
+export * from './quiz';
+export * from './qa';

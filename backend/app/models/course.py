@@ -190,6 +190,7 @@ class Lecture(Base):
     lecture_progress = relationship("LectureProgress", back_populates="lecture", cascade="all, delete-orphan")
     notes = relationship("Note", back_populates="lecture", cascade="all, delete-orphan")
     qa_questions = relationship("QAQuestion", back_populates="lecture", cascade="all, delete-orphan")
+    resources = relationship("LectureResource", back_populates="lecture", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Lecture(id={self.id}, title='{self.title}', type='{self.lecture_type.value}')>"

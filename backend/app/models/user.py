@@ -52,6 +52,7 @@ class User(Base):
     certificates = relationship("Certificate", back_populates="user", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="user", cascade="all, delete-orphan")
     instructor_applications = relationship("InstructorApplication", foreign_keys="InstructorApplication.user_id", back_populates="applicant", cascade="all, delete-orphan")
+    resource_downloads = relationship("ResourceDownload", back_populates="user", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<User(id={self.id}, email='{self.email}', role='{self.role.value}')>"

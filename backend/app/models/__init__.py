@@ -10,6 +10,7 @@ from .interaction import Note, QAQuestion, QAAnswer
 from .certificate import Certificate
 from .transaction import Transaction, InstructorPayout, TransactionStatus, PaymentMethod
 from .instructor_application import InstructorApplication, ApplicationStatus
+from .resource import LectureResource, ResourceDownload, ResourceType
 
 __all__ = [
     "User",
@@ -37,5 +38,8 @@ __all__ = [
     "TransactionStatus",
     "PaymentMethod",
     "InstructorApplication",
-    "ApplicationStatus"
+    "ApplicationStatus",
+    "LectureResource",
+    "ResourceDownload",
+    "ResourceType"
 ]

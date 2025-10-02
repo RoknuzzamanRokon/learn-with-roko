@@ -3,6 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Lecture, CourseWithSections } from "../../types/course";
 import { LectureProgressUpdate } from "../../types/enrollment";
+import { NoteTaking } from "./NoteTaking";
+import { ResourceDownload } from "./ResourceDownload";
+import { QuizList } from "./QuizList";
+import { QADiscussion } from "./QADiscussion";
 
 interface CoursePlayerProps {
   lecture: Lecture;
@@ -333,39 +337,57 @@ export function CoursePlayer({
           </div>
         </div>
 
-        {/* Lecture Resources */}
-        {lecture.resources && lecture.resources.length > 0 && (
-          <div className="mt-6 border-t pt-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Resources
-            </h3>
-            <div className="space-y-2">
-              {lecture.resources.map((resource, index) => (
-                <a
-                  key={index}
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                  </svg>
-                  <div>
-                    <p className="font-medium text-gray-900">
-                      {resource.title}
-                    </p>
-                    <p className="text-sm text-gray-500">{resource.type}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Interactive Features */}
+        <div className="mt-6 border-t pt-6 space-y-6">
+          {/* Note Taking */}
+          {course.allow_notes && (
+            <NoteTaking
+              lectureId={lecture.id}
+              currentTime={currentTime}
+              onNoteCreated={(note) => {
+                console.log("Note created:", note);
+              }}
+              onNoteUpdated={(note) => {
+                console.log("Note updated:", note);
+              }}
+              onNoteDeleted={(noteId) => {
+                console.log("Note deleted:", noteId);
+              }}
+            />
+          )}
+
+          {/* Resource Downloads */}
+          <ResourceDownload
+            lectureId={lecture.id}
+            onResourceDownloaded={(resource) => {
+              console.log("Resource downloaded:", resource);
+            }}
+          />
+
+          {/* Course Quizzes */}
+          <QuizList
+            courseId={course.id}
+            onQuizSelect={(quiz) => {
+              console.log("Quiz selected:", quiz);
+              // This could navigate to a quiz taking page
+              // For now, we'll just log it
+            }}
+          />
+
+          {/* Q&A Discussion */}
+          {course.allow_qa && (
+            <QADiscussion
+              lectureId={lecture.id}
+              currentTime={currentTime}
+              onQuestionCreated={(question) => {
+                console.log("Question created:", question);
+              }}
+              onAnswerCreated={(answer) => {
+                console.log("Answer created:", answer);
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
