@@ -201,7 +201,8 @@ export function InstructorApplicationForm({
               maxLength={3000}
             />
             <p className="text-xs text-gray-500 mt-1">
-              {formData.sample_course_outline.length}/3000 characters (optional)
+              {formData.sample_course_outline?.length || 0}/3000 characters
+              (optional)
             </p>
           </div>
 
