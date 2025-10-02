@@ -14,6 +14,7 @@ python-multipart = "*"
 pydantic = "*"
 python-dotenv = "*"
 email-validator = "*"
+alembic = "*"
 
 [dev-packages]
 
