@@ -57,9 +57,9 @@ export default function AuthPage() {
       <div className="mt-8 text-center">
         <div className="text-sm text-gray-500">
           <p>Demo Accounts:</p>
-          <p>Super Admin: admin@example.com / password123</p>
-          <p>Instructor: instructor@example.com / password123</p>
-          <p>Learner: learner@example.com / password123</p>
+          <p>Super Admin: admin@learnwithroko.com / admin123</p>
+          <p>Instructor: instructor@learnwithroko.com / instructor123</p>
+          <p>Learner: learner@learnwithroko.com / learner123</p>
         </div>
       </div>
     </div>
