@@ -16,6 +16,7 @@ python-dotenv = "*"
 email-validator = "*"
 alembic = "*"
 reportlab = "*"
+stripe = "*"
 
 [dev-packages]
 
