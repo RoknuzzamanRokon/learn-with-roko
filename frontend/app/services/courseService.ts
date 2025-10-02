@@ -145,6 +145,13 @@ class CourseService {
         return this.handleResponse<Course | CourseWithSections>(response);
     }
 
+    async getCourseWithSections(courseId: number): Promise<CourseWithSections> {
+        const response = await fetch(`${API_BASE_URL}/courses/${courseId}?include_sections=true`, {
+            headers: await this.getAuthHeaders()
+        });
+        return this.handleResponse<CourseWithSections>(response);
+    }
+
     async updateCourse(courseId: number, courseData: CourseUpdate): Promise<Course> {
         const response = await fetch(`${API_BASE_URL}/courses/${courseId}`, {
             method: 'PUT',

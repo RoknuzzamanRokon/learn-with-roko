@@ -103,6 +103,27 @@ class EnrollmentService {
         });
         return this.handleResponse<Enrollment>(response);
     }
+
+    async getDashboardSummary(): Promise<any> {
+        const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/summary`, {
+            headers: await this.getAuthHeaders()
+        });
+        return this.handleResponse<any>(response);
+    }
+
+    async getRecentActivity(limit: number = 5): Promise<any[]> {
+        const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/recent-activity?limit=${limit}`, {
+            headers: await this.getAuthHeaders()
+        });
+        return this.handleResponse<any[]>(response);
+    }
+
+    async getEnrolledCoursesForDashboard(): Promise<any[]> {
+        const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/courses`, {
+            headers: await this.getAuthHeaders()
+        });
+        return this.handleResponse<any[]>(response);
+    }
 }
 
 export const enrollmentService = new EnrollmentService();

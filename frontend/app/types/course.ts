@@ -118,12 +118,20 @@ export interface Lecture {
     lecture_type: LectureType;
     order_index: number;
     duration: number;
+    duration_minutes: number;
     video_url?: string;
     content_url?: string;
     is_preview: boolean;
     is_downloadable: boolean;
+    resources?: LectureResource[];
     created_at: string;
     updated_at: string;
+}
+
+export interface LectureResource {
+    title: string;
+    type: string;
+    url: string;
 }
 
 export interface LectureCreate {

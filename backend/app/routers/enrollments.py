@@ -128,3 +128,34 @@ async def enroll_with_payment(
     """Enroll user after successful payment."""
     service = EnrollmentService(db)
     return service.enroll_with_payment(current_user.id, enrollment_data, payment_intent_id)
+
+
+@router.get("/dashboard/summary")
+async def get_dashboard_summary(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get dashboard summary with enrollment statistics."""
+    service = EnrollmentService(db)
+    return service.get_dashboard_summary(current_user.id)
+
+
+@router.get("/dashboard/recent-activity")
+async def get_recent_activity(
+    limit: int = 5,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get recent learning activity for dashboard."""
+    service = EnrollmentService(db)
+    return service.get_recent_activity(current_user.id, limit)
+
+
+@router.get("/dashboard/courses")
+async def get_enrolled_courses_for_dashboard(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get enrolled courses with progress for dashboard."""
+    service = EnrollmentService(db)
+    return service.get_enrolled_courses_with_progress(current_user.id)
