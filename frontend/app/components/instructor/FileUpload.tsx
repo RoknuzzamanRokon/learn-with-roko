@@ -195,10 +195,10 @@ export default function FileUpload({
       <div
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
           dragOver
-            ? "border-blue-400 bg-blue-50"
+            ? "border-[var(--primary-400)] bg-[var(--primary-50)]"
             : uploading
-            ? "border-gray-300 bg-gray-50"
-            : "border-gray-300 hover:border-gray-400"
+            ? "border-[var(--gray-300)] bg-[var(--gray-50)]"
+            : "border-[var(--gray-300)] hover:border-[var(--gray-400)]"
         } ${uploading ? "pointer-events-none" : ""}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -217,18 +217,20 @@ export default function FileUpload({
 
         {uploading ? (
           <div className="space-y-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--primary-600)] mx-auto"></div>
             <div>
-              <p className="text-sm text-gray-600">Uploading...</p>
+              <p className="text-sm text-[var(--gray-600)] font-medium">
+                Uploading...
+              </p>
               {uploadProgress > 0 && (
                 <div className="mt-2">
-                  <div className="bg-gray-200 rounded-full h-2">
+                  <div className="bg-[var(--gray-200)] rounded-full h-2">
                     <div
-                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                      className="bg-[var(--primary-600)] h-2 rounded-full transition-all duration-300"
                       style={{ width: `${uploadProgress}%` }}
                     ></div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-[var(--gray-500)] mt-1">
                     {uploadProgress}%
                   </p>
                 </div>
@@ -237,7 +239,7 @@ export default function FileUpload({
           </div>
         ) : (
           <div className="space-y-2">
-            <div className="mx-auto h-12 w-12 text-gray-400">
+            <div className="mx-auto h-12 w-12 text-[var(--gray-400)]">
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
@@ -248,13 +250,13 @@ export default function FileUpload({
               </svg>
             </div>
             <div>
-              <p className="text-sm text-gray-600">
-                <span className="font-medium text-blue-600">
+              <p className="text-sm text-[var(--gray-600)]">
+                <span className="font-semibold text-[var(--primary-600)]">
                   Click to upload
                 </span>{" "}
                 or drag and drop
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-[var(--gray-500)]">
                 {multiple ? "Multiple files supported" : "Single file only"} •
                 Max {maxSize}MB
               </p>
@@ -264,8 +266,13 @@ export default function FileUpload({
       </div>
 
       {error && (
-        <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-sm text-red-600">{error}</p>
+        <div className="mt-2 p-3 bg-[var(--error-50)] border border-[var(--error-200)] rounded-md">
+          <div className="flex items-center">
+            <span className="text-[var(--error-600)] mr-2">⚠️</span>
+            <p className="text-sm text-[var(--error-800)] font-medium">
+              {error}
+            </p>
+          </div>
         </div>
       )}
     </div>

@@ -49,7 +49,8 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-blue-600 bg-blue-100",
+      colorClass: "text-primary-600 bg-primary-100",
+      borderClass: "border-t-primary-600",
     },
     {
       name: "Completed",
@@ -69,7 +70,8 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-green-600 bg-green-100",
+      colorClass: "text-success-600 bg-success-100",
+      borderClass: "border-t-success-600",
     },
     {
       name: "In Progress",
@@ -89,7 +91,8 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-yellow-600 bg-yellow-100",
+      colorClass: "text-warning-600 bg-warning-100",
+      borderClass: "border-t-warning-600",
     },
     {
       name: "Watch Time",
@@ -109,7 +112,8 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-purple-600 bg-purple-100",
+      colorClass: "text-accent-purple bg-purple-100",
+      borderClass: "border-t-accent-purple",
     },
     {
       name: "Certificates",
@@ -129,7 +133,8 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-indigo-600 bg-indigo-100",
+      colorClass: "text-accent-teal bg-teal-100",
+      borderClass: "border-t-accent-teal",
     },
     {
       name: "Completion Rate",
@@ -149,16 +154,20 @@ export function DashboardStats({ summary }: DashboardStatsProps) {
           />
         </svg>
       ),
-      color: "text-pink-600 bg-pink-100",
+      colorClass: "text-primary-700 bg-primary-50",
+      borderClass: "border-t-primary-700",
     },
   ];
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
       {stats.map((stat) => (
-        <div key={stat.name} className="bg-white rounded-lg shadow-sm p-6">
+        <div
+          key={stat.name}
+          className={`metric-card-base border-t-4 ${stat.borderClass} hover:shadow-md transition-shadow`}
+        >
           <div className="flex items-center">
-            <div className={`flex-shrink-0 p-3 rounded-lg ${stat.color}`}>
+            <div className={`flex-shrink-0 p-3 rounded-lg ${stat.colorClass}`}>
               {stat.icon}
             </div>
           </div>

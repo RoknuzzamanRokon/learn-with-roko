@@ -141,11 +141,15 @@ export function QuizTaking({
 
         <div className="space-y-3">
           {question.question_type === "multiple_choice" && question.options && (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {question.options.map((option, optionIndex) => (
                 <label
                   key={optionIndex}
-                  className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    userAnswer === option
+                      ? "border-primary-500 bg-primary-50 shadow-sm"
+                      : "border-gray-200 hover:border-primary-300 hover:bg-primary-50/50"
+                  }`}
                 >
                   <input
                     type="radio"
@@ -155,20 +159,30 @@ export function QuizTaking({
                     onChange={(e) =>
                       handleAnswerChange(question.id, e.target.value)
                     }
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-5 w-5 text-primary-600 focus:ring-primary-500 border-gray-300"
                   />
-                  <span className="text-gray-900">{option}</span>
+                  <span
+                    className={`text-gray-900 font-medium ${
+                      userAnswer === option ? "text-primary-700" : ""
+                    }`}
+                  >
+                    {option}
+                  </span>
                 </label>
               ))}
             </div>
           )}
 
           {question.question_type === "true_false" && (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {["true", "false"].map((option) => (
                 <label
                   key={option}
-                  className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  className={`flex items-center space-x-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    userAnswer === option
+                      ? "border-primary-500 bg-primary-50 shadow-sm"
+                      : "border-gray-200 hover:border-primary-300 hover:bg-primary-50/50"
+                  }`}
                 >
                   <input
                     type="radio"
@@ -178,9 +192,15 @@ export function QuizTaking({
                     onChange={(e) =>
                       handleAnswerChange(question.id, e.target.value)
                     }
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-5 w-5 text-primary-600 focus:ring-primary-500 border-gray-300"
                   />
-                  <span className="text-gray-900 capitalize">{option}</span>
+                  <span
+                    className={`text-gray-900 font-medium capitalize ${
+                      userAnswer === option ? "text-primary-700" : ""
+                    }`}
+                  >
+                    {option}
+                  </span>
                 </label>
               ))}
             </div>
@@ -192,7 +212,7 @@ export function QuizTaking({
               value={userAnswer}
               onChange={(e) => handleAnswerChange(question.id, e.target.value)}
               placeholder="Enter your answer..."
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="input-base focus:border-primary-500 focus:ring-primary-500 resize-none"
               rows={question.question_type === "essay" ? 6 : 3}
             />
           )}
@@ -273,9 +293,9 @@ export function QuizTaking({
 
       {/* Progress Bar */}
       <div className="bg-white border-b border-gray-200 px-6 py-2">
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="progress-bar">
           <div
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+            className="progress-fill bg-primary-600 transition-all duration-500"
             style={{
               width: `${
                 ((currentQuestionIndex + 1) / quiz.questions.length) * 100
@@ -297,7 +317,7 @@ export function QuizTaking({
                 setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))
               }
               disabled={currentQuestionIndex === 0}
-              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-base btn-secondary btn-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Previous
             </button>
@@ -313,7 +333,7 @@ export function QuizTaking({
                       )
                     )
                   }
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  className="btn-base btn-primary btn-md"
                 >
                   Next
                 </button>
@@ -321,7 +341,7 @@ export function QuizTaking({
                 <button
                   onClick={handleSubmitQuiz}
                   disabled={isSubmitting}
-                  className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-base btn-success btn-md disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Submitting..." : "Submit Quiz"}
                 </button>
@@ -340,13 +360,13 @@ export function QuizTaking({
               <button
                 key={question.id}
                 onClick={() => setCurrentQuestionIndex(index)}
-                className={`w-8 h-8 text-xs rounded ${
+                className={`w-10 h-10 text-sm font-medium rounded-lg transition-all ${
                   index === currentQuestionIndex
-                    ? "bg-blue-600 text-white"
+                    ? "bg-primary-600 text-white shadow-md"
                     : answers[question.id]
-                    ? "bg-green-100 text-green-800 border border-green-300"
-                    : "bg-gray-100 text-gray-600 border border-gray-300"
-                } hover:bg-opacity-80 transition-colors`}
+                    ? "bg-success-100 text-success-800 border-2 border-success-300 hover:bg-success-200"
+                    : "bg-gray-100 text-gray-600 border-2 border-gray-300 hover:bg-gray-200 hover:border-primary-300"
+                }`}
               >
                 {index + 1}
               </button>

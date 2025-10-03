@@ -51,13 +51,24 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
 
   const getProgressColor = (percentage: number) => {
     if (percentage === 0) return "bg-gray-200";
-    if (percentage < 30) return "bg-red-500";
-    if (percentage < 70) return "bg-yellow-500";
-    return "bg-green-500";
+    if (percentage < 30) return "bg-error-500";
+    if (percentage < 70) return "bg-warning-500";
+    return "bg-success-500";
+  };
+
+  const getProgressTextColor = (percentage: number) => {
+    if (percentage === 0) return "text-gray-500";
+    if (percentage < 30) return "text-error-600";
+    if (percentage < 70) return "text-warning-600";
+    return "text-success-600";
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+    <div
+      className={`course-card ${
+        course.is_completed ? "course-card-featured" : ""
+      }`}
+    >
       <div className="flex">
         {/* Thumbnail */}
         <div className="flex-shrink-0 w-48 h-32">
@@ -93,7 +104,7 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
               {course.course_title}
             </h3>
             {course.is_completed && (
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
                 <svg
                   className="w-3 h-3 mr-1"
                   fill="currentColor"
@@ -128,15 +139,19 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
               <span className="text-sm font-medium text-gray-700">
                 Progress
               </span>
-              <span className="text-sm text-gray-500">
+              <span
+                className={`text-sm font-semibold ${getProgressTextColor(
+                  course.progress_percentage
+                )}`}
+              >
                 {Math.round(course.progress_percentage)}%
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="progress-bar">
               <div
-                className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(
+                className={`progress-fill ${getProgressColor(
                   course.progress_percentage
-                )}`}
+                ).replace("bg-", "bg-")}`}
                 style={{ width: `${course.progress_percentage}%` }}
               ></div>
             </div>
@@ -144,7 +159,7 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
 
           {/* Next Lecture or Completion Info */}
           {course.is_completed ? (
-            <div className="flex items-center text-sm text-green-600 mb-4">
+            <div className="flex items-center text-sm text-success-600 mb-4 bg-success-50 p-2 rounded-md">
               <svg
                 className="w-4 h-4 mr-2"
                 fill="currentColor"
@@ -162,15 +177,15 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
                 : "Unknown"}
             </div>
           ) : course.next_lecture ? (
-            <div className="text-sm text-gray-600 mb-4">
-              <span className="font-medium">Up Next:</span>{" "}
+            <div className="text-sm text-gray-600 mb-4 bg-primary-50 p-2 rounded-md border-l-3 border-primary-500">
+              <span className="font-medium text-primary-700">Up Next:</span>{" "}
               {course.next_lecture.title}
               <div className="text-xs text-gray-500 mt-1">
                 in {course.next_lecture.section_title}
               </div>
             </div>
           ) : course.progress_percentage === 0 ? (
-            <div className="text-sm text-gray-600 mb-4">
+            <div className="text-sm text-gray-600 mb-4 bg-gray-50 p-2 rounded-md">
               <span className="font-medium">Ready to start</span>
             </div>
           ) : null}
@@ -189,13 +204,19 @@ export function CourseCard({ course, onContinue }: CourseCardProps) {
                 onClick={() =>
                   (window.location.href = `/catalog/${course.course_id}`)
                 }
-                className="px-3 py-1.5 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                className="btn-base btn-outline-secondary btn-sm"
               >
                 View Details
               </button>
               <button
                 onClick={onContinue}
-                className="px-4 py-1.5 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
+                className={`btn-base btn-sm ${
+                  course.is_completed
+                    ? "btn-success"
+                    : course.progress_percentage === 0
+                    ? "btn-primary"
+                    : "btn-primary"
+                }`}
               >
                 {course.is_completed
                   ? "Review"

@@ -186,12 +186,12 @@ export default function LearnPage() {
         }`}
       >
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-6 py-4">
+        <header className="header-primary px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+                className="p-2 rounded-md text-gray-400 hover:text-primary-600 hover:bg-primary-50 transition-colors"
               >
                 <svg
                   className="w-5 h-5"
@@ -219,12 +219,23 @@ export default function LearnPage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-600">
-                Progress: {Math.round(enrollment.progress_percentage)}%
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-600">Progress:</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-16 bg-gray-200 rounded-full h-2">
+                    <div
+                      className="progress-fill bg-success-500 h-2 rounded-full"
+                      style={{ width: `${enrollment.progress_percentage}%` }}
+                    />
+                  </div>
+                  <span className="text-sm font-semibold text-success-600">
+                    {Math.round(enrollment.progress_percentage)}%
+                  </span>
+                </div>
               </div>
               <button
                 onClick={() => (window.location.href = "/dashboard")}
-                className="px-4 py-2 text-sm bg-gray-600 text-white rounded hover:bg-gray-700"
+                className="btn-base btn-secondary btn-sm"
               >
                 Back to Dashboard
               </button>

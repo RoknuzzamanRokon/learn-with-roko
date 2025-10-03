@@ -2,8 +2,184 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Design System Components */
-@import '../src/styles/design-system.css';
+/* Essential Form Styles - Inline to avoid import issues */
+
+/* Form Input Styles */
+.input-base {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300, #d1d5db);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    line-height: 1.25;
+    background-color: var(--white, #ffffff);
+    color: var(--gray-900, #111827);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-base::placeholder {
+    color: var(--gray-400, #9ca3af);
+}
+
+.input-base:focus {
+    outline: none;
+    border-color: var(--primary-600, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-base:hover:not(:focus):not(:disabled) {
+    border-color: var(--gray-400, #9ca3af);
+}
+
+.input-base:disabled {
+    background-color: var(--gray-50, #f9fafb);
+    color: var(--gray-500, #6b7280);
+    cursor: not-allowed;
+}
+
+.input-error {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--error-500, #ef4444);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    line-height: 1.25;
+    background-color: var(--white, #ffffff);
+    color: var(--gray-900, #111827);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-error:focus {
+    outline: none;
+    border-color: var(--error-600, #dc2626);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-success {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--success-500, #10b981);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    line-height: 1.25;
+    background-color: var(--white, #ffffff);
+    color: var(--gray-900, #111827);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-success:focus {
+    outline: none;
+    border-color: var(--success-600, #059669);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Button Styles */
+.btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: 1px solid;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1.25;
+}
+
+.btn-base:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.btn-base:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-600, #2563eb);
+    color: var(--white, #ffffff);
+    border-color: var(--primary-600, #2563eb);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-700, #1d4ed8);
+    border-color: var(--primary-700, #1d4ed8);
+}
+
+.btn-secondary {
+    background-color: var(--gray-100, #f3f4f6);
+    color: var(--gray-700, #374151);
+    border-color: var(--gray-200, #e5e7eb);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-200, #e5e7eb);
+    border-color: var(--gray-300, #d1d5db);
+}
+
+/* Form Labels */
+.label-base {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700, #374151);
+    margin-bottom: 0.5rem;
+}
+
+.label-required::after {
+    content: ' *';
+    color: var(--error-500, #ef4444);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form Messages */
+.form-error-message {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--error-600, #dc2626);
+}
+
+.form-error-message::before {
+    content: '⚠';
+    margin-right: 0.375rem;
+    font-size: 1rem;
+}
+
+.form-error-banner {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--error-50, #fef2f2);
+    border: 1px solid var(--error-200, #fecaca);
+    border-radius: 0.5rem;
+    color: var(--error-800, #991b1b);
+}
+
+.form-error-banner::before {
+    content: '✕';
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--error-600, #dc2626);
+}
 
 /* Design System Foundation - CSS Custom Properties */
 :root {
@@ -22,6 +198,8 @@
 
     /* Neutral Colors */
     --white: #ffffff;
+    --gray-25: #fcfcfd;
+    /* Very light background for alternating rows */
     --gray-50: #f9fafb;
     /* Light background */
     --gray-100: #f3f4f6;

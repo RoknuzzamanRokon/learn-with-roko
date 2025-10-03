@@ -91,18 +91,20 @@ export function CourseSidebar({
 
           {/* Course Progress */}
           {courseProgress && (
-            <div className="mt-3">
-              <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
-                <span>Progress</span>
-                <span>{Math.round(courseProgress.progress_percentage)}%</span>
+            <div className="mt-3 p-3 bg-primary-50 rounded-lg border border-primary-200">
+              <div className="flex items-center justify-between text-sm text-gray-700 mb-2">
+                <span className="font-medium">Overall Progress</span>
+                <span className="font-semibold text-primary-600">
+                  {Math.round(courseProgress.progress_percentage)}%
+                </span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="progress-bar mb-2">
                 <div
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  className="progress-fill bg-primary-600 transition-all duration-500"
                   style={{ width: `${courseProgress.progress_percentage}%` }}
                 />
               </div>
-              <div className="flex items-center justify-between text-xs text-gray-500 mt-1">
+              <div className="flex items-center justify-between text-xs text-gray-600">
                 <span>
                   {courseProgress.completed_lectures} of{" "}
                   {courseProgress.total_lectures} lectures
@@ -124,18 +126,32 @@ export function CourseSidebar({
             return (
               <div key={section.id} className="border-b border-gray-100">
                 {/* Section Header */}
-                <div className="p-4 bg-gray-50">
+                <div
+                  className={`p-4 ${
+                    sectionProgress.percentage === 100
+                      ? "bg-success-50 border-l-4 border-success-500"
+                      : "bg-gray-50"
+                  }`}
+                >
                   <div className="flex items-center justify-between">
                     <h3 className="font-medium text-gray-900">
                       {sectionIndex + 1}. {section.title}
                     </h3>
                     <div className="flex items-center space-x-2">
-                      <span className="text-xs text-gray-500">
+                      <span
+                        className={`text-xs px-2 py-1 rounded-full ${
+                          sectionProgress.percentage === 100
+                            ? "bg-success-100 text-success-700"
+                            : sectionProgress.percentage > 0
+                            ? "bg-primary-100 text-primary-700"
+                            : "bg-gray-100 text-gray-600"
+                        }`}
+                      >
                         {sectionProgress.completed}/{sectionProgress.total}
                       </span>
                       {sectionProgress.percentage === 100 && (
                         <svg
-                          className="w-4 h-4 text-green-500"
+                          className="w-4 h-4 text-success-500"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -149,6 +165,18 @@ export function CourseSidebar({
                       {section.description}
                     </p>
                   )}
+                  {/* Section Progress Bar */}
+                  {sectionProgress.percentage > 0 &&
+                    sectionProgress.percentage < 100 && (
+                      <div className="mt-2">
+                        <div className="w-full bg-gray-200 rounded-full h-1">
+                          <div
+                            className="bg-primary-500 h-1 rounded-full transition-all duration-300"
+                            style={{ width: `${sectionProgress.percentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
                 </div>
 
                 {/* Section Lectures */}
@@ -162,17 +190,22 @@ export function CourseSidebar({
                       <button
                         key={lecture.id}
                         onClick={() => onLectureSelect(lecture.id)}
-                        className={`w-full text-left p-4 hover:bg-gray-50 transition-colors ${
+                        className={`w-full text-left p-4 transition-colors ${
                           isActive
-                            ? "bg-blue-50 border-r-2 border-blue-500"
-                            : ""
+                            ? "bg-primary-50 border-r-4 border-primary-600"
+                            : isCompleted
+                            ? "hover:bg-success-50"
+                            : lectureProgress?.progress_percentage &&
+                              lectureProgress.progress_percentage > 0
+                            ? "hover:bg-primary-50"
+                            : "hover:bg-gray-50"
                         }`}
                       >
                         <div className="flex items-start space-x-3">
                           {/* Lecture Status Icon */}
                           <div className="flex-shrink-0 mt-1">
                             {isCompleted ? (
-                              <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                              <div className="w-5 h-5 bg-success-500 rounded-full flex items-center justify-center shadow-sm">
                                 <svg
                                   className="w-3 h-3 text-white"
                                   fill="currentColor"
@@ -183,11 +216,11 @@ export function CourseSidebar({
                               </div>
                             ) : lectureProgress?.progress_percentage &&
                               lectureProgress.progress_percentage > 0 ? (
-                              <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                              <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center shadow-sm">
                                 <div className="w-2 h-2 bg-white rounded-full" />
                               </div>
                             ) : (
-                              <div className="w-5 h-5 border-2 border-gray-300 rounded-full" />
+                              <div className="w-5 h-5 border-2 border-gray-300 rounded-full hover:border-primary-400 transition-colors" />
                             )}
                           </div>
 
@@ -196,14 +229,18 @@ export function CourseSidebar({
                             <div className="flex items-center justify-between">
                               <p
                                 className={`text-sm font-medium truncate ${
-                                  isActive ? "text-blue-600" : "text-gray-900"
+                                  isActive
+                                    ? "text-primary-700"
+                                    : isCompleted
+                                    ? "text-success-700"
+                                    : "text-gray-900"
                                 }`}
                               >
                                 {lectureIndex + 1}. {lecture.title}
                               </p>
                               {isActive && (
                                 <svg
-                                  className="w-4 h-4 text-blue-500 flex-shrink-0 ml-2"
+                                  className="w-4 h-4 text-primary-600 flex-shrink-0 ml-2"
                                   fill="currentColor"
                                   viewBox="0 0 24 24"
                                 >
@@ -219,7 +256,7 @@ export function CourseSidebar({
                               {lectureProgress?.progress_percentage &&
                                 lectureProgress.progress_percentage > 0 &&
                                 !isCompleted && (
-                                  <span className="text-xs text-blue-600">
+                                  <span className="text-xs text-primary-600 font-semibold">
                                     {Math.round(
                                       lectureProgress.progress_percentage
                                     )}
@@ -232,9 +269,9 @@ export function CourseSidebar({
                             {lectureProgress?.progress_percentage &&
                               lectureProgress.progress_percentage > 0 &&
                               !isCompleted && (
-                                <div className="w-full bg-gray-200 rounded-full h-1 mt-2">
+                                <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
                                   <div
-                                    className="bg-blue-500 h-1 rounded-full"
+                                    className="bg-primary-500 h-1.5 rounded-full transition-all duration-300"
                                     style={{
                                       width: `${lectureProgress.progress_percentage}%`,
                                     }}

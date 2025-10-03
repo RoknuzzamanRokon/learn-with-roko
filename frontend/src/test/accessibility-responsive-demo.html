@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility and Responsive Features Demo</title>
+    <link rel="stylesheet" href="../styles/design-system.css" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background-color: var(--gray-50);
+        color: var(--gray-900);
+      }
+
+      .demo-section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: 0.75rem;
+        border: 1px solid var(--gray-200);
+      }
+
+      .demo-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .demo-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .demo-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+      <h1>Accessibility and Responsive Features Demo</h1>
+      <p>
+        This page demonstrates the implemented accessibility and responsive
+        design features.
+      </p>
+    </header>
+
+    <main id="main-content">
+      <!-- Accessibility Features Demo -->
+      <section class="demo-section">
+        <h2>Accessibility Features</h2>
+
+        <h3>Status Indicators with Icons and Patterns</h3>
+        <div class="demo-grid">
+          <div class="status-indicator status-success">
+            <span>Task Completed</span>
+          </div>
+          <div class="status-indicator status-warning">
+            <span>Attention Required</span>
+          </div>
+          <div class="status-indicator status-error">
+            <span>Error Occurred</span>
+          </div>
+          <div class="status-indicator status-info">
+            <span>Information</span>
+          </div>
+        </div>
+
+        <h3>Accessible Progress Bars</h3>
+        <div class="demo-grid">
+          <div
+            class="progress-bar-accessible"
+            role="progressbar"
+            aria-valuenow="75"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="Course Progress"
+          >
+            <div class="progress-fill-success" style="width: 75%">
+              <span class="sr-only">75% complete</span>
+            </div>
+          </div>
+          <div
+            class="progress-bar-accessible"
+            role="progressbar"
+            aria-valuenow="45"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="Assignment Progress"
+          >
+            <div class="progress-fill-warning" style="width: 45%">
+              <span class="sr-only">45% complete</span>
+            </div>
+          </div>
+          <div
+            class="progress-bar-accessible"
+            role="progressbar"
+            aria-valuenow="20"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="Quiz Progress"
+          >
+            <div class="progress-fill-error" style="width: 20%">
+              <span class="sr-only">20% complete</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Quiz Options with Accessible States</h3>
+        <div class="quiz-option quiz-option-correct">
+          <p>This is a correct answer with visual and textual indicators.</p>
+        </div>
+        <div class="quiz-option quiz-option-incorrect">
+          <p>This is an incorrect answer with clear visual feedback.</p>
+        </div>
+        <div class="quiz-option quiz-option-active">
+          <p>This is the currently selected option.</p>
+        </div>
+
+        <h3>Accessible Badges</h3>
+        <div class="demo-grid">
+          <span class="badge-accessible badge-success-accessible"
+            >Completed</span
+          >
+          <span class="badge-accessible badge-warning-accessible"
+            >In Progress</span
+          >
+          <span class="badge-accessible badge-error-accessible">Failed</span>
+          <span class="badge-accessible badge-info-accessible">New</span>
+        </div>
+
+        <h3>Accessible Alerts</h3>
+        <div class="alert-accessible alert-success-accessible">
+          <strong>Success!</strong> Your changes have been saved successfully.
+        </div>
+        <div class="alert-accessible alert-warning-accessible">
+          <strong>Warning!</strong> Please review your submission before
+          continuing.
+        </div>
+        <div class="alert-accessible alert-error-accessible">
+          <strong>Error!</strong> There was a problem processing your request.
+        </div>
+        <div class="alert-accessible alert-info-accessible">
+          <strong>Info!</strong> New features are now available in your
+          dashboard.
+        </div>
+      </section>
+
+      <!-- Responsive Features Demo -->
+      <section class="demo-section">
+        <h2>Responsive Design Features</h2>
+
+        <h3>Responsive Button Grid</h3>
+        <div class="demo-grid">
+          <button class="btn-base btn-primary">Primary Action</button>
+          <button class="btn-base btn-secondary">Secondary Action</button>
+          <button class="btn-base btn-success">Success Action</button>
+          <button class="btn-base btn-warning">Warning Action</button>
+          <button class="btn-base btn-error">Error Action</button>
+          <button class="btn-base btn-outline-primary">Outline Primary</button>
+        </div>
+
+        <h3>Responsive Course Cards</h3>
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-card-header">
+              <h4>Introduction to Web Development</h4>
+            </div>
+            <div class="course-card-body">
+              <p>Learn the fundamentals of HTML, CSS, and JavaScript.</p>
+              <div
+                class="progress-bar-accessible"
+                role="progressbar"
+                aria-valuenow="60"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="progress-fill-success" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card course-card-featured">
+            <div class="course-card-header">
+              <h4>Advanced React Concepts</h4>
+            </div>
+            <div class="course-card-body">
+              <p>Master advanced React patterns and state management.</p>
+              <div
+                class="progress-bar-accessible"
+                role="progressbar"
+                aria-valuenow="30"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="progress-fill-warning" style="width: 30%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-card-header">
+              <h4>Database Design Principles</h4>
+            </div>
+            <div class="course-card-body">
+              <p>Learn to design efficient and scalable databases.</p>
+              <div
+                class="progress-bar-accessible"
+                role="progressbar"
+                aria-valuenow="90"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="progress-fill-success" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Responsive Metric Cards</h3>
+        <div class="metric-grid">
+          <div class="metric-card metric-card-primary">
+            <h3>1,234</h3>
+            <p>Total Students</p>
+          </div>
+          <div class="metric-card metric-card-success">
+            <h3>89%</h3>
+            <p>Completion Rate</p>
+          </div>
+          <div class="metric-card metric-card-warning">
+            <h3>45</h3>
+            <p>Pending Reviews</p>
+          </div>
+          <div class="metric-card metric-card-error">
+            <h3>3</h3>
+            <p>System Alerts</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- High Contrast and Dark Mode Demo -->
+      <section class="demo-section">
+        <h2>Accessibility Preferences</h2>
+        <p>This page automatically adapts to your system preferences:</p>
+        <ul>
+          <li>
+            <strong>High Contrast Mode:</strong> Enhanced contrast ratios and
+            border visibility
+          </li>
+          <li>
+            <strong>Reduced Motion:</strong> Disabled animations and transitions
+          </li>
+          <li>
+            <strong>Dark Mode:</strong> Inverted color scheme for better
+            visibility in low light
+          </li>
+          <li>
+            <strong>Touch Devices:</strong> Larger touch targets and enhanced
+            feedback
+          </li>
+        </ul>
+
+        <button
+          class="theme-toggle"
+          onclick="toggleTheme()"
+          aria-label="Toggle color scheme"
+        >
+          🌓 Toggle Theme
+        </button>
+      </section>
+    </main>
+
+    <script>
+      // Simple theme toggle for demonstration
+      function toggleTheme() {
+        const html = document.documentElement;
+        const currentScheme = html.getAttribute("data-color-scheme") || "light";
+        const newScheme = currentScheme === "light" ? "dark" : "light";
+        html.setAttribute("data-color-scheme", newScheme);
+        localStorage.setItem("color-scheme", newScheme);
+      }
+
+      // Initialize theme based on preference
+      function initTheme() {
+        const stored = localStorage.getItem("color-scheme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const scheme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-color-scheme", scheme);
+      }
+
+      // Apply responsive classes
+      function applyResponsiveClasses() {
+        const html = document.documentElement;
+        const width = window.innerWidth;
+
+        html.classList.remove("is-mobile", "is-tablet", "is-desktop");
+
+        if (width < 768) {
+          html.classList.add("is-mobile");
+        } else if (width < 1024) {
+          html.classList.add("is-tablet");
+        } else {
+          html.classList.add("is-desktop");
+        }
+
+        // Add touch support detection
+        if ("ontouchstart" in window) {
+          html.classList.add("has-touch");
+        }
+
+        // Add hover support detection
+        if (window.matchMedia("(hover: hover)").matches) {
+          html.classList.add("has-hover");
+        }
+      }
+
+      // Initialize on load
+      document.addEventListener("DOMContentLoaded", () => {
+        initTheme();
+        applyResponsiveClasses();
+      });
+
+      // Update on resize
+      window.addEventListener("resize", applyResponsiveClasses);
+
+      // Listen for system theme changes
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          if (!localStorage.getItem("color-scheme")) {
+            document.documentElement.setAttribute(
+              "data-color-scheme",
+              e.matches ? "dark" : "light"
+            );
+          }
+        });
+    </script>
+  </body>
+</html>

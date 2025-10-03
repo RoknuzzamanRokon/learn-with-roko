@@ -42,6 +42,55 @@ export {
     addFeatureDetectionClasses,
 } from './utils';
 
+// Accessibility Utilities
+export type {
+    ColorBlindnessType,
+    WCAGLevel,
+    AccessibilityValidationResult,
+    ColorCombination,
+} from './accessibility-utils';
+
+export {
+    validateWCAGAA,
+    validateWCAGAAA,
+    validateDesignSystemContrast,
+    simulateColorBlindness,
+    validateColorBlindFriendly,
+    generateAccessibleAlternatives,
+    applyAccessibilityEnhancements,
+    generateAccessibilityReport,
+    createAccessibleStatusIndicator,
+    createAccessibleProgressBar,
+    initializeAccessibility,
+} from './accessibility-utils';
+
+// Responsive Utilities
+export type {
+    Breakpoint,
+    DeviceInfo,
+} from './responsive-utils';
+
+export {
+    BREAKPOINTS,
+    getDeviceInfo,
+    matchesBreakpoint,
+    getCurrentBreakpoint,
+    getResponsiveValue,
+    getTouchTargetSize,
+    applyResponsiveClasses,
+    getResponsiveFontSize,
+    getResponsiveSpacing,
+    isDarkMode,
+    toggleDarkMode,
+    initializeDarkMode,
+    getResponsiveColumns,
+    setResponsiveProperties,
+    getResponsiveImageSrc,
+    initializeResponsiveDesign,
+    getAnimationDuration,
+    createBreakpointObserver,
+} from './responsive-utils';
+
 // CSS Classes - these correspond to the classes defined in design-system.css
 export const DESIGN_SYSTEM_CLASSES = {
     // Button Classes
@@ -67,8 +116,44 @@ export const DESIGN_SYSTEM_CLASSES = {
 
     // Form Classes
     INPUT_BASE: 'input-base',
-    INPUT_ERROR: 'input-error',
+    INPUT_SM: 'input-sm',
+    INPUT_MD: 'input-md',
+    INPUT_LG: 'input-lg',
     INPUT_SUCCESS: 'input-success',
+    INPUT_WARNING: 'input-warning',
+    INPUT_ERROR: 'input-error',
+    TEXTAREA_BASE: 'textarea-base',
+    SELECT_BASE: 'select-base',
+    CHECKBOX_BASE: 'checkbox-base',
+    RADIO_BASE: 'radio-base',
+    LABEL_BASE: 'label-base',
+    LABEL_REQUIRED: 'label-required',
+    LABEL_OPTIONAL: 'label-optional',
+    FORM_GROUP: 'form-group',
+    FORM_GROUP_INLINE: 'form-group-inline',
+    FORM_ERROR_MESSAGE: 'form-error-message',
+    FORM_SUCCESS_MESSAGE: 'form-success-message',
+    FORM_WARNING_MESSAGE: 'form-warning-message',
+    FORM_HELP_TEXT: 'form-help-text',
+    FORM_LOADING: 'form-loading',
+    FORM_SUCCESS_BANNER: 'form-success-banner',
+    FORM_ERROR_BANNER: 'form-error-banner',
+    FORM_LOADING_SPINNER: 'form-loading-spinner',
+    FORM_PROGRESS_BAR: 'form-progress-bar',
+    FORM_PROGRESS_FILL: 'form-progress-fill',
+    FORM_PROGRESS_FILL_SUCCESS: 'form-progress-fill-success',
+    FORM_PROGRESS_FILL_ERROR: 'form-progress-fill-error',
+    BTN_LOADING: 'btn-loading',
+    FORM_VALIDATION_SUMMARY: 'form-validation-summary',
+    FORM_VALIDATION_SUMMARY_TITLE: 'form-validation-summary-title',
+    FORM_VALIDATION_SUMMARY_LIST: 'form-validation-summary-list',
+    FORM_VALIDATION_SUMMARY_ITEM: 'form-validation-summary-item',
+    FORM_STEPS: 'form-steps',
+    FORM_STEP: 'form-step',
+    FORM_STEP_ACTIVE: 'form-step-active',
+    FORM_STEP_COMPLETED: 'form-step-completed',
+    FORM_STEP_NUMBER: 'form-step-number',
+    FORM_STEP_TITLE: 'form-step-title',
 
     // Progress Classes
     PROGRESS_BAR: 'progress-bar',
@@ -103,6 +188,36 @@ export const DESIGN_SYSTEM_CLASSES = {
     BORDER_WARNING: 'border-warning',
     BORDER_ERROR: 'border-error',
     COLOR_TRANSITION: 'color-transition',
+
+    // Accessibility Classes
+    STATUS_INDICATOR: 'status-indicator',
+    STATUS_SUCCESS: 'status-success',
+    STATUS_WARNING: 'status-warning',
+    STATUS_ERROR: 'status-error',
+    STATUS_INFO: 'status-info',
+    PROGRESS_BAR_ACCESSIBLE: 'progress-bar-accessible',
+    QUIZ_OPTION: 'quiz-option',
+    QUIZ_OPTION_CORRECT: 'quiz-option-correct',
+    QUIZ_OPTION_INCORRECT: 'quiz-option-incorrect',
+    QUIZ_OPTION_ACTIVE: 'quiz-option-active',
+    BADGE_ACCESSIBLE: 'badge-accessible',
+    BADGE_SUCCESS_ACCESSIBLE: 'badge-success-accessible',
+    BADGE_WARNING_ACCESSIBLE: 'badge-warning-accessible',
+    BADGE_ERROR_ACCESSIBLE: 'badge-error-accessible',
+    BADGE_INFO_ACCESSIBLE: 'badge-info-accessible',
+    ALERT_ACCESSIBLE: 'alert-accessible',
+    ALERT_SUCCESS_ACCESSIBLE: 'alert-success-accessible',
+    ALERT_WARNING_ACCESSIBLE: 'alert-warning-accessible',
+    ALERT_ERROR_ACCESSIBLE: 'alert-error-accessible',
+    ALERT_INFO_ACCESSIBLE: 'alert-info-accessible',
+    FOCUS_VISIBLE: 'focus-visible',
+    SR_ONLY: 'sr-only',
+    SKIP_LINK: 'skip-link',
+
+    // Responsive Classes
+    COURSE_GRID: 'course-grid',
+    METRIC_GRID: 'metric-grid',
+    THEME_TOGGLE: 'theme-toggle',
 } as const;
 
 // Default color values for fallbacks

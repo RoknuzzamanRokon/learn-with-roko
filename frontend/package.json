@@ -12,6 +12,11 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
+    "test:accessibility": "vitest --run src/test/accessibility",
+    "test:accessibility:watch": "vitest src/test/accessibility",
+    "test:accessibility:ci": "vitest --run src/test/accessibility --reporter=json --outputFile=accessibility-results.json",
+    "test:accessibility:comprehensive": "tsx src/test/accessibility/automated-accessibility-check.ts",
+    "test:accessibility:quick": "tsx src/test/accessibility/accessibility-test-runner.ts --quick",
     "msw:init": "msw init public/ --save"
   },
   "dependencies": {

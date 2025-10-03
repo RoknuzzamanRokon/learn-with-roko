@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { DESIGN_SYSTEM_CLASSES } from "../../../src/styles";
 
 interface LoginFormProps {
   onSuccess?: () => void;
@@ -92,15 +93,15 @@ export default function LoginForm({
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {errors.general && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+            <div className={DESIGN_SYSTEM_CLASSES.FORM_ERROR_BANNER}>
               {errors.general}
             </div>
           )}
 
-          <div>
+          <div className={DESIGN_SYSTEM_CLASSES.FORM_GROUP}>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className={`${DESIGN_SYSTEM_CLASSES.LABEL_BASE} ${DESIGN_SYSTEM_CLASSES.LABEL_REQUIRED}`}
             >
               Email Address
             </label>
@@ -110,21 +111,25 @@ export default function LoginForm({
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                errors.email ? "border-red-300" : "border-gray-300"
-              }`}
+              className={
+                errors.email
+                  ? DESIGN_SYSTEM_CLASSES.INPUT_ERROR
+                  : DESIGN_SYSTEM_CLASSES.INPUT_BASE
+              }
               placeholder="Enter your email"
               disabled={isLoading}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              <div className={DESIGN_SYSTEM_CLASSES.FORM_ERROR_MESSAGE}>
+                {errors.email}
+              </div>
             )}
           </div>
 
-          <div>
+          <div className={DESIGN_SYSTEM_CLASSES.FORM_GROUP}>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className={`${DESIGN_SYSTEM_CLASSES.LABEL_BASE} ${DESIGN_SYSTEM_CLASSES.LABEL_REQUIRED}`}
             >
               Password
             </label>
@@ -134,30 +139,29 @@ export default function LoginForm({
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                errors.password ? "border-red-300" : "border-gray-300"
-              }`}
+              className={
+                errors.password
+                  ? DESIGN_SYSTEM_CLASSES.INPUT_ERROR
+                  : DESIGN_SYSTEM_CLASSES.INPUT_BASE
+              }
               placeholder="Enter your password"
               disabled={isLoading}
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              <div className={DESIGN_SYSTEM_CLASSES.FORM_ERROR_MESSAGE}>
+                {errors.password}
+              </div>
             )}
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className={`w-full ${DESIGN_SYSTEM_CLASSES.BTN_PRIMARY} ${
+              isLoading ? DESIGN_SYSTEM_CLASSES.BTN_LOADING : ""
+            }`}
           >
-            {isLoading ? (
-              <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Signing In...
-              </div>
-            ) : (
-              "Sign In"
-            )}
+            {isLoading ? "Signing In..." : "Sign In"}
           </button>
         </form>
 
@@ -168,7 +172,10 @@ export default function LoginForm({
               <button
                 type="button"
                 onClick={onSwitchToRegister}
-                className="text-blue-600 hover:text-blue-500 font-medium"
+                className={
+                  DESIGN_SYSTEM_CLASSES.TEXT_PRIMARY +
+                  " hover:opacity-80 font-medium"
+                }
               >
                 Sign up here
               </button>

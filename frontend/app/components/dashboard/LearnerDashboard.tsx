@@ -146,7 +146,7 @@ export function LearnerDashboard() {
             {/* Course Tabs */}
             <div className="bg-white rounded-lg shadow-sm">
               <div className="border-b border-gray-200">
-                <nav className="flex space-x-8 px-6">
+                <nav className="tab-nav px-6">
                   {[
                     {
                       key: "all",
@@ -170,10 +170,8 @@ export function LearnerDashboard() {
                     <button
                       key={tab.key}
                       onClick={() => setActiveTab(tab.key as any)}
-                      className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                        activeTab === tab.key
-                          ? "border-blue-500 text-blue-600"
-                          : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      className={`tab-item ${
+                        activeTab === tab.key ? "tab-item-active" : ""
                       }`}
                     >
                       {tab.label} ({tab.count})
@@ -217,7 +215,7 @@ export function LearnerDashboard() {
                     {activeTab === "all" && (
                       <button
                         onClick={() => (window.location.href = "/catalog")}
-                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                        className="btn-base btn-primary btn-md"
                       >
                         Browse Courses
                       </button>
@@ -251,19 +249,19 @@ export function LearnerDashboard() {
               <div className="space-y-3">
                 <button
                   onClick={() => (window.location.href = "/catalog")}
-                  className="w-full text-left px-4 py-3 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                  className="w-full text-left px-4 py-3 text-sm bg-primary-50 text-primary-700 rounded-lg hover:bg-primary-100 transition-colors border border-primary-200"
                 >
                   Browse New Courses
                 </button>
                 <button
                   onClick={() => (window.location.href = "/certificates")}
-                  className="w-full text-left px-4 py-3 text-sm bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors"
+                  className="w-full text-left px-4 py-3 text-sm bg-success-50 text-success-700 rounded-lg hover:bg-success-100 transition-colors border border-success-200"
                 >
                   View Certificates
                 </button>
                 <button
                   onClick={() => (window.location.href = "/profile")}
-                  className="w-full text-left px-4 py-3 text-sm bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors"
+                  className="w-full text-left px-4 py-3 text-sm bg-accent-purple-50 text-accent-purple-700 rounded-lg hover:bg-accent-purple-100 transition-colors border border-accent-purple-200"
                 >
                   Update Profile
                 </button>

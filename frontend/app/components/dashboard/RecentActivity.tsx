@@ -49,9 +49,9 @@ export function RecentActivity({ activities }: RecentActivityProps) {
   const getActivityIcon = (type: string, isCompleted: boolean) => {
     if (isCompleted) {
       return (
-        <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+        <div className="flex-shrink-0 w-8 h-8 bg-success-100 rounded-full flex items-center justify-center">
           <svg
-            className="w-4 h-4 text-green-600"
+            className="w-4 h-4 text-success-600"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -66,9 +66,9 @@ export function RecentActivity({ activities }: RecentActivityProps) {
     }
 
     return (
-      <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+      <div className="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
         <svg
-          className="w-4 h-4 text-blue-600"
+          className="w-4 h-4 text-primary-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -150,7 +150,7 @@ export function RecentActivity({ activities }: RecentActivityProps) {
               onClick={() =>
                 (window.location.href = `/learn/${activity.course_id}?lecture=${activity.lecture_id}`)
               }
-              className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+              className="text-xs text-primary-600 hover:text-primary-800 font-medium"
             >
               Continue
             </button>
@@ -162,7 +162,7 @@ export function RecentActivity({ activities }: RecentActivityProps) {
         <div className="mt-4 pt-4 border-t border-gray-200">
           <button
             onClick={() => (window.location.href = "/activity")}
-            className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+            className="text-sm text-primary-600 hover:text-primary-800 font-medium"
           >
             View all activity →
           </button>

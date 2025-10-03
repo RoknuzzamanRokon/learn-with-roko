@@ -65,14 +65,14 @@ export function QuizList({ courseId, onQuizSelect }: QuizListProps) {
     }
 
     if (bestAttempt.is_passed) {
-      return { text: "Passed", color: "text-green-600 bg-green-100" };
+      return { text: "✓ Passed", color: "text-success-700 bg-success-100" };
     }
 
     if (attempts.length >= quiz.max_attempts) {
-      return { text: "Failed", color: "text-red-600 bg-red-100" };
+      return { text: "✗ Failed", color: "text-error-700 bg-error-100" };
     }
 
-    return { text: "In Progress", color: "text-yellow-600 bg-yellow-100" };
+    return { text: "In Progress", color: "text-warning-700 bg-warning-100" };
   };
 
   const canTakeQuiz = (quiz: QuizSummary, attempts: QuizAttempt[]): boolean => {
@@ -241,16 +241,22 @@ export function QuizList({ courseId, onQuizSelect }: QuizListProps) {
                         {canTake ? (
                           <button
                             onClick={() => onQuizSelect?.(quiz)}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+                            className="btn-base btn-primary btn-sm"
                           >
                             {attempts.length === 0
                               ? "Start Quiz"
                               : "Retake Quiz"}
                           </button>
                         ) : (
-                          <span className="px-4 py-2 bg-gray-100 text-gray-500 rounded-md text-sm">
+                          <span
+                            className={`px-4 py-2 rounded-md text-sm font-medium ${
+                              bestAttempt?.is_passed
+                                ? "bg-success-100 text-success-700"
+                                : "bg-gray-100 text-gray-500"
+                            }`}
+                          >
                             {bestAttempt?.is_passed
-                              ? "Completed"
+                              ? "✓ Completed"
                               : "No attempts left"}
                           </span>
                         )}
@@ -261,7 +267,7 @@ export function QuizList({ courseId, onQuizSelect }: QuizListProps) {
                               // Could implement viewing past attempts
                               console.log("View attempts for quiz:", quiz.id);
                             }}
-                            className="text-xs text-blue-600 hover:text-blue-800"
+                            className="text-xs text-primary-600 hover:text-primary-800 font-medium"
                           >
                             View attempts
                           </button>

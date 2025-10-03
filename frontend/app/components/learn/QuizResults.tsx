@@ -21,13 +21,13 @@ export function QuizResults({
   };
 
   const getScoreColor = (score: number, passingScore: number): string => {
-    return score >= passingScore ? "text-green-600" : "text-red-600";
+    return score >= passingScore ? "text-success-600" : "text-error-600";
   };
 
   const getScoreBgColor = (score: number, passingScore: number): string => {
     return score >= passingScore
-      ? "bg-green-50 border-green-200"
-      : "bg-red-50 border-red-200";
+      ? "bg-success-50 border-success-200"
+      : "bg-error-50 border-error-200";
   };
 
   const formatTime = (minutes: number): string => {
@@ -100,14 +100,14 @@ export function QuizResults({
           {can_retake && (
             <button
               onClick={onRetakeQuiz}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              className="btn-base btn-primary btn-lg"
             >
               Retake Quiz
             </button>
           )}
           <button
             onClick={onBackToCourse}
-            className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium"
+            className="btn-base btn-secondary btn-lg"
           >
             Back to Course
           </button>
@@ -130,13 +130,13 @@ export function QuizResults({
                   </h3>
                   <div className="flex items-center space-x-2">
                     <span
-                      className={`px-2 py-1 text-xs font-medium rounded-full ${
+                      className={`px-3 py-1 text-xs font-semibold rounded-full ${
                         question.is_correct
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
+                          ? "bg-success-100 text-success-800"
+                          : "bg-error-100 text-error-800"
                       }`}
                     >
-                      {question.is_correct ? "Correct" : "Incorrect"}
+                      {question.is_correct ? "✓ Correct" : "✗ Incorrect"}
                     </span>
                     <span className="text-sm text-gray-500">
                       {question.points}{" "}
@@ -156,15 +156,15 @@ export function QuizResults({
                       {question.options.map((option, optionIndex) => (
                         <div
                           key={optionIndex}
-                          className={`p-3 border rounded-lg ${
+                          className={`p-3 border-2 rounded-lg ${
                             option === question.user_answer &&
                             option === question.correct_answer
-                              ? "bg-green-50 border-green-300"
+                              ? "bg-success-50 border-success-300"
                               : option === question.user_answer &&
                                 option !== question.correct_answer
-                              ? "bg-red-50 border-red-300"
+                              ? "bg-error-50 border-error-300"
                               : option === question.correct_answer
-                              ? "bg-green-50 border-green-300"
+                              ? "bg-success-50 border-success-300"
                               : "bg-gray-50 border-gray-200"
                           }`}
                         >
@@ -172,13 +172,13 @@ export function QuizResults({
                             <span className="text-gray-900">{option}</span>
                             <div className="flex items-center space-x-2">
                               {option === question.user_answer && (
-                                <span className="text-xs text-blue-600 font-medium">
+                                <span className="text-xs text-primary-600 font-semibold bg-primary-100 px-2 py-1 rounded">
                                   Your answer
                                 </span>
                               )}
                               {option === question.correct_answer && (
-                                <span className="text-xs text-green-600 font-medium">
-                                  Correct
+                                <span className="text-xs text-success-600 font-semibold bg-success-100 px-2 py-1 rounded">
+                                  ✓ Correct
                                 </span>
                               )}
                             </div>
@@ -194,15 +194,15 @@ export function QuizResults({
                     {["true", "false"].map((option) => (
                       <div
                         key={option}
-                        className={`p-3 border rounded-lg ${
+                        className={`p-3 border-2 rounded-lg ${
                           option === question.user_answer &&
                           option === question.correct_answer
-                            ? "bg-green-50 border-green-300"
+                            ? "bg-success-50 border-success-300"
                             : option === question.user_answer &&
                               option !== question.correct_answer
-                            ? "bg-red-50 border-red-300"
+                            ? "bg-error-50 border-error-300"
                             : option === question.correct_answer
-                            ? "bg-green-50 border-green-300"
+                            ? "bg-success-50 border-success-300"
                             : "bg-gray-50 border-gray-200"
                         }`}
                       >
@@ -212,13 +212,13 @@ export function QuizResults({
                           </span>
                           <div className="flex items-center space-x-2">
                             {option === question.user_answer && (
-                              <span className="text-xs text-blue-600 font-medium">
+                              <span className="text-xs text-primary-600 font-semibold bg-primary-100 px-2 py-1 rounded">
                                 Your answer
                               </span>
                             )}
                             {option === question.correct_answer && (
-                              <span className="text-xs text-green-600 font-medium">
-                                Correct
+                              <span className="text-xs text-success-600 font-semibold bg-success-100 px-2 py-1 rounded">
+                                ✓ Correct
                               </span>
                             )}
                           </div>
@@ -237,10 +237,10 @@ export function QuizResults({
                         Your Answer:
                       </label>
                       <div
-                        className={`p-3 border rounded-lg ${
+                        className={`p-3 border-2 rounded-lg ${
                           question.is_correct
-                            ? "bg-green-50 border-green-300"
-                            : "bg-red-50 border-red-300"
+                            ? "bg-success-50 border-success-300"
+                            : "bg-error-50 border-error-300"
                         }`}
                       >
                         <p className="text-gray-900 whitespace-pre-wrap">
@@ -253,7 +253,7 @@ export function QuizResults({
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Correct Answer:
                         </label>
-                        <div className="p-3 bg-green-50 border border-green-300 rounded-lg">
+                        <div className="p-3 bg-success-50 border-2 border-success-300 rounded-lg">
                           <p className="text-gray-900 whitespace-pre-wrap">
                             {question.correct_answer}
                           </p>
@@ -265,11 +265,24 @@ export function QuizResults({
 
                 {/* Explanation */}
                 {question.explanation && (
-                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h4 className="text-sm font-medium text-blue-900 mb-2">
+                  <div className="mt-4 p-4 bg-primary-50 border-2 border-primary-200 rounded-lg">
+                    <h4 className="text-sm font-semibold text-primary-900 mb-2 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
                       Explanation:
                     </h4>
-                    <p className="text-blue-800 text-sm">
+                    <p className="text-primary-800 text-sm">
                       {question.explanation}
                     </p>
                   </div>

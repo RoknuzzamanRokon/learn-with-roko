@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LMS UI Component Showcase</title>
+    <link rel="stylesheet" href="../styles/design-system.css" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background-color: var(--gray-50);
+        color: var(--gray-900);
+      }
+      .showcase-section {
+        margin-bottom: 3rem;
+        background-color: var(--white);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-200);
+      }
+      .showcase-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--gray-900);
+      }
+      .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .component-example {
+        padding: 1rem;
+        border: 1px solid var(--gray-200);
+        border-radius: 0.375rem;
+        background-color: var(--gray-50);
+      }
+    </style>
+  </head>
+  <body>
+    <h1
+      style="text-align: center; color: var(--primary-600); margin-bottom: 3rem"
+    >
+      LMS UI Component Showcase
+    </h1>
+
+    <!-- Button Components -->
+    <div class="showcase-section">
+      <h2 class="showcase-title">Button Components</h2>
+
+      <h3>Primary Buttons</h3>
+      <div class="component-grid">
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-xs">Extra Small</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-sm">Small</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-md">Medium</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-lg">Large</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-xl">Extra Large</button>
+        </div>
+      </div>
+
+      <h3>Button Variants</h3>
+      <div class="component-grid">
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-md">Primary</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-secondary btn-md">Secondary</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-success btn-md">Success</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-warning btn-md">Warning</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-error btn-md">Error</button>
+        </div>
+      </div>
+
+      <h3>Outline Buttons</h3>
+      <div class="component-grid">
+        <div class="component-example">
+          <button class="btn-base btn-outline-primary btn-md">Primary</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-outline-secondary btn-md">
+            Secondary
+          </button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-outline-success btn-md">Success</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-outline-warning btn-md">Warning</button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-outline-error btn-md">Error</button>
+        </div>
+      </div>
+
+      <h3>Disabled States</h3>
+      <div class="component-grid">
+        <div class="component-example">
+          <button class="btn-base btn-primary btn-md" disabled>
+            Primary Disabled
+          </button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-secondary btn-md" disabled>
+            Secondary Disabled
+          </button>
+        </div>
+        <div class="component-example">
+          <button class="btn-base btn-outline-primary btn-md" disabled>
+            Outline Disabled
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Components -->
+    <div class="showcase-section">
+      <h2 class="showcase-title">Card Components</h2>
+
+      <h3>Course Cards</h3>
+      <div class="component-grid">
+        <div class="course-card">
+          <div class="course-card-header">
+            <h4 style="margin: 0; color: var(--gray-900)">
+              Regular Course Card
+            </h4>
+          </div>
+          <div class="course-card-body">
+            <p style="margin: 0; color: var(--gray-600)">
+              This is a regular course card with standard styling.
+            </p>
+          </div>
+          <div class="course-card-footer">
+            <button class="btn-base btn-primary btn-sm">Enroll Now</button>
+          </div>
+        </div>
+
+        <div class="course-card-featured">
+          <div class="course-card-header">
+            <h4 style="margin: 0; color: var(--gray-900)">
+              Featured Course Card
+            </h4>
+          </div>
+          <div class="course-card-body">
+            <p style="margin: 0; color: var(--gray-600)">
+              This is a featured course card with enhanced styling.
+            </p>
+          </div>
+          <div class="course-card-footer">
+            <button class="btn-base btn-primary btn-sm">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+
+      <h3>Metric Cards</h3>
+      <div class="component-grid">
+        <div class="metric-card-primary">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-600)">
+            Total Students
+          </h4>
+          <p
+            style="
+              margin: 0;
+              font-size: 2rem;
+              font-weight: 600;
+              color: var(--gray-900);
+            "
+          >
+            1,234
+          </p>
+        </div>
+
+        <div class="metric-card-success">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--success-600)">
+            Completed Courses
+          </h4>
+          <p
+            style="
+              margin: 0;
+              font-size: 2rem;
+              font-weight: 600;
+              color: var(--gray-900);
+            "
+          >
+            567
+          </p>
+        </div>
+
+        <div class="metric-card-warning">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-600)">
+            In Progress
+          </h4>
+          <p
+            style="
+              margin: 0;
+              font-size: 2rem;
+              font-weight: 600;
+              color: var(--gray-900);
+            "
+          >
+            89
+          </p>
+        </div>
+
+        <div class="metric-card-error">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--error-600)">Overdue</h4>
+          <p
+            style="
+              margin: 0;
+              font-size: 2rem;
+              font-weight: 600;
+              color: var(--gray-900);
+            "
+          >
+            12
+          </p>
+        </div>
+      </div>
+
+      <h3>Container Variants</h3>
+      <div class="component-grid">
+        <div class="container-base">
+          <h4 style="margin: 0 0 0.5rem 0">Base Container</h4>
+          <p style="margin: 0; color: var(--gray-600)">
+            Standard white container
+          </p>
+        </div>
+
+        <div class="container-gray">
+          <h4 style="margin: 0 0 0.5rem 0">Gray Container</h4>
+          <p style="margin: 0; color: var(--gray-600)">Light gray background</p>
+        </div>
+
+        <div class="container-primary-light">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-700)">
+            Primary Container
+          </h4>
+          <p style="margin: 0; color: var(--primary-600)">
+            Primary color background
+          </p>
+        </div>
+
+        <div class="container-success-light">
+          <h4 style="margin: 0 0 0.5rem 0; color: var(--success-700)">
+            Success Container
+          </h4>
+          <p style="margin: 0; color: var(--success-600)">
+            Success color background
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Components -->
+    <div class="showcase-section">
+      <h2 class="showcase-title">Navigation Components</h2>
+
+      <h3>Navigation Links</h3>
+      <div
+        style="
+          background-color: var(--gray-50);
+          padding: 1rem;
+          border-radius: 0.375rem;
+          margin-bottom: 1rem;
+        "
+      >
+        <a href="#" class="nav-link">Dashboard</a>
+        <a href="#" class="nav-link-active">Courses</a>
+        <a href="#" class="nav-link">Students</a>
+        <a href="#" class="nav-link">Reports</a>
+      </div>
+
+      <h3>Breadcrumbs</h3>
+      <nav class="breadcrumb">
+        <a href="#" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="#" class="breadcrumb-item">Courses</a>
+        <span class="breadcrumb-separator">›</span>
+        <span class="breadcrumb-item-active">JavaScript Fundamentals</span>
+      </nav>
+
+      <h3>Pagination</h3>
+      <nav class="pagination">
+        <a
+          href="#"
+          class="pagination-item pagination-prev pagination-item-disabled"
+          >‹ Previous</a
+        >
+        <a href="#" class="pagination-item">1</a>
+        <a href="#" class="pagination-item pagination-item-active">2</a>
+        <a href="#" class="pagination-item">3</a>
+        <a href="#" class="pagination-item">4</a>
+        <a href="#" class="pagination-item">5</a>
+        <a href="#" class="pagination-item pagination-next">Next ›</a>
+      </nav>
+
+      <h3>Tab Navigation</h3>
+      <nav class="tab-nav">
+        <a href="#" class="tab-item tab-item-active">Overview</a>
+        <a href="#" class="tab-item">Curriculum</a>
+        <a href="#" class="tab-item">Reviews</a>
+        <a href="#" class="tab-item">Instructor</a>
+      </nav>
+    </div>
+
+    <!-- Form Components -->
+    <div class="showcase-section">
+      <h2 class="showcase-title">Form Components</h2>
+
+      <div class="component-grid">
+        <div class="component-example">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500"
+            >Normal Input</label
+          >
+          <input type="text" class="input-base" placeholder="Enter text here" />
+        </div>
+
+        <div class="component-example">
+          <label
+            style="
+              display: block;
+              margin-bottom: 0.5rem;
+              font-weight: 500;
+              color: var(--success-600);
+            "
+            >Success Input</label
+          >
+          <input
+            type="text"
+            class="input-success"
+            placeholder="Valid input"
+            value="Valid data"
+          />
+        </div>
+
+        <div class="component-example">
+          <label
+            style="
+              display: block;
+              margin-bottom: 0.5rem;
+              font-weight: 500;
+              color: var(--error-600);
+            "
+            >Error Input</label
+          >
+          <input
+            type="text"
+            class="input-error"
+            placeholder="Invalid input"
+            value="Invalid data"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Components -->
+    <div class="showcase-section">
+      <h2 class="showcase-title">Status Components</h2>
+
+      <h3>Badges</h3>
+      <div class="component-grid">
+        <div class="component-example">
+          <span class="badge-base badge-primary">Primary</span>
+        </div>
+        <div class="component-example">
+          <span class="badge-base badge-success">Success</span>
+        </div>
+        <div class="component-example">
+          <span class="badge-base badge-warning">Warning</span>
+        </div>
+        <div class="component-example">
+          <span class="badge-base badge-error">Error</span>
+        </div>
+      </div>
+
+      <h3>Progress Bars</h3>
+      <div class="component-example">
+        <div style="margin-bottom: 1rem">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 0.5rem;
+            "
+          >
+            <span>Course Progress</span>
+            <span class="text-primary">75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 0.5rem;
+            "
+          >
+            <span>Completion Rate</span>
+            <span class="text-success">100%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill-success" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Alerts</h3>
+      <div style="display: grid; gap: 1rem">
+        <div class="alert-base alert-info">
+          <strong>Info:</strong> This is an informational message.
+        </div>
+        <div class="alert-base alert-success">
+          <strong>Success:</strong> Your action was completed successfully.
+        </div>
+        <div class="alert-base alert-warning">
+          <strong>Warning:</strong> Please review this information carefully.
+        </div>
+        <div class="alert-base alert-error">
+          <strong>Error:</strong> There was a problem with your request.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
