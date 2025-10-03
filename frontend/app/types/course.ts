@@ -123,12 +123,12 @@ export interface Lecture {
     content_url?: string;
     is_preview: boolean;
     is_downloadable: boolean;
-    resources?: LectureResource[];
+    resources?: LectureResourceReference[];
     created_at: string;
     updated_at: string;
 }
 
-export interface LectureResource {
+export interface LectureResourceReference {
     title: string;
     type: string;
     url: string;

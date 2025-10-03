@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
 import { beforeAll, afterEach, afterAll, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
+import React from 'react'
 import { server } from './mocks/server'
 
 // Start server before all tests
@@ -33,8 +34,7 @@ vi.mock('next/navigation', () => ({
 vi.mock('next/image', () => ({
     default: ({ src, alt, ...props }: any) => {
         // eslint-disable-next-line @next/next/no-img-element
-        return <img src={ src } alt = { alt } {...props
-} />
+        return React.createElement('img', { src, alt, ...props });
     },
 }))
 

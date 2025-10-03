@@ -11,7 +11,8 @@ import {
   MessageCreate,
   CommunicationStats,
 } from "../../services/communicationService";
-import { courseService, Course } from "../../services/courseService";
+import { courseService } from "../../services/courseService";
+import { Course } from "../../types/course";
 
 interface TabButtonProps {
   active: boolean;
