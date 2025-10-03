@@ -128,12 +128,25 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[var(--gray-900)]">
-            Admin Dashboard
-          </h1>
-          <p className="mt-2 text-[var(--gray-600)]">
-            Platform overview and key metrics
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-[var(--gray-900)]">
+                Admin Dashboard
+              </h1>
+              <p className="mt-2 text-[var(--gray-600)]">
+                Platform overview and key metrics
+              </p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => router.push("/admin/theme")}
+                className="btn-base btn-secondary text-sm"
+                title="Configure theme"
+              >
+                🎨 Theme Settings
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Key Metrics */}
@@ -364,7 +377,7 @@ export default function AdminDashboard() {
             </h2>
           </div>
           <div className="p-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
               <button
                 onClick={() => router.push("/admin/users")}
                 className="p-4 border border-[var(--gray-200)] rounded-lg hover:bg-[var(--primary-50)] hover:border-[var(--primary-200)] text-left transition-colors group"
@@ -424,6 +437,23 @@ export default function AdminDashboard() {
                 </h3>
                 <p className="text-sm text-[var(--gray-600)]">
                   Moderate and manage courses
+                </p>
+              </button>
+
+              <button
+                onClick={() => router.push("/admin/theme")}
+                className="p-4 border border-[var(--gray-200)] rounded-lg hover:bg-[var(--accent-teal-50)] hover:border-[var(--accent-teal-200)] text-left transition-colors group"
+              >
+                <div className="w-10 h-10 bg-[var(--accent-teal-100)] rounded-lg flex items-center justify-center mb-3 group-hover:bg-[var(--accent-teal-200)] transition-colors">
+                  <span className="text-[var(--accent-teal-600)] text-lg">
+                    🎨
+                  </span>
+                </div>
+                <h3 className="font-semibold text-[var(--gray-900)] mb-1">
+                  Theme Configuration
+                </h3>
+                <p className="text-sm text-[var(--gray-600)]">
+                  Customize colors and branding
                 </p>
               </button>
             </div>

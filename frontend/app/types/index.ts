@@ -7,3 +7,4 @@ export * from './resource';
 export * from './quiz';
 export * from './qa';
 export * from './certificate';
+export * from './theme';

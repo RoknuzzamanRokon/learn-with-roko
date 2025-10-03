@@ -4,3 +4,6 @@ export { UserCreateModal } from './UserCreateModal';
 export { UserManagement } from './UserManagement';
 export { InstructorApplicationList } from './InstructorApplicationList';
 export { InstructorApplicationReviewModal } from './InstructorApplicationReviewModal';
+export { ThemeConfigurationInterface } from './ThemeConfigurationInterface';
+export { ColorPicker } from './ColorPicker';
+export { ThemePreview } from './ThemePreview';

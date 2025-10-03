@@ -1,10 +1,14 @@
 import type { Config } from 'tailwindcss'
+import { createNextJSPurgingConfig } from './src/styles/css-purging'
 
 const config: Config = {
     content: [
         './app/**/*.{js,ts,jsx,tsx,mdx}',
         './src/**/*.{js,ts,jsx,tsx,mdx}',
     ],
+
+    // CSS purging configuration for production optimization
+    // Note: Tailwind CSS v4 handles purging automatically based on content paths
     theme: {
         extend: {
             colors: {

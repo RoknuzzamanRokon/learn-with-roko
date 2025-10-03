@@ -1,9 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe, toHaveNoViolations } from "jest-axe";
-import LoginForm from "@/components/auth/LoginForm";
-import { CourseCard } from "@/components/catalog/CourseCard";
-import { Course } from "@/types/course";
+import LoginForm from "../../../app/components/auth/LoginForm";
+import { CourseCard } from "../../../app/components/catalog/CourseCard";
+import { Course } from "../../../app/types/course";
 
 // Extend expect with jest-axe matchers
 expect.extend(toHaveNoViolations);
@@ -18,7 +19,7 @@ const mockAuthContext = {
   isAuthenticated: false,
 };
 
-vi.mock("@/contexts/AuthContext", () => ({
+vi.mock("../../../app/contexts/AuthContext", () => ({
   useAuth: () => mockAuthContext,
   AuthProvider: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
@@ -70,10 +71,13 @@ describe("Accessibility Tests", () => {
     });
 
     it("provides proper error announcements", async () => {
+      const user = userEvent.setup();
       render(<LoginForm />);
 
       const submitButton = screen.getByRole("button", { name: /sign in/i });
-      submitButton.click();
+
+      // Use user event to properly trigger state updates
+      await user.click(submitButton);
 
       // Wait for validation errors to appear
       await screen.findByText(/email is required/i);
@@ -83,7 +87,7 @@ describe("Accessibility Tests", () => {
       expect(emailError).toBeInTheDocument();
 
       // Error messages should be announced to screen readers
-      expect(emailError).toHaveClass("text-red-600");
+      expect(emailError).toHaveClass("form-error-message");
     });
 
     it("has proper focus management", () => {
@@ -107,7 +111,7 @@ describe("Accessibility Tests", () => {
       const emailLabel = screen.getByText(/email address/i);
 
       expect(heading).toHaveClass("text-gray-900"); // Should have good contrast
-      expect(emailLabel).toHaveClass("text-gray-700"); // Should have good contrast
+      expect(emailLabel).toHaveClass("label-base"); // Should have good contrast
     });
   });
 
@@ -118,21 +122,23 @@ describe("Accessibility Tests", () => {
       description: "This is a test course description.",
       short_description: "Short test description",
       instructor_id: 1,
-      instructor: {
-        id: 1,
-        first_name: "John",
-        last_name: "Instructor",
-        username: "instructor1",
-      },
+      category_id: 1,
       price: 99.99,
-      is_published: true,
-      is_featured: false,
-      thumbnail_url: "https://example.com/thumbnail.jpg",
+      status: "published",
       difficulty_level: "beginner",
+      thumbnail_url: "https://example.com/thumbnail.jpg",
+      preview_video_url: "",
       total_duration: 120,
       total_lectures: 15,
+      language: "en",
+      is_featured: false,
+      allow_qa: true,
+      allow_notes: true,
       created_at: "2024-01-01T00:00:00Z",
       updated_at: "2024-01-01T00:00:00Z",
+      published_at: "2024-01-01T00:00:00Z",
+      is_free: false,
+      is_published: true,
     };
 
     it("should not have any accessibility violations", async () => {

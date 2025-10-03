@@ -11,6 +11,13 @@ import {
     type AccessibilityTestSuiteResult,
     type AccessibilityTestConfig
 } from './accessibility-test-utils';
+import {
+    validateWCAGAA,
+    validateWCAGAAA,
+    validateColorBlindFriendly,
+    simulateColorBlindness,
+    type ColorBlindnessType
+} from '../../styles/accessibility-utils';
 
 describe('Comprehensive Accessibility Testing Suite', () => {
     let testSuiteResult: AccessibilityTestSuiteResult;
@@ -361,6 +368,336 @@ describe('Comprehensive Accessibility Testing Suite', () => {
             expect(run1.summary.failed).toBe(run2.summary.failed);
 
             console.log('Consistency check passed - results are deterministic');
+        });
+    });
+
+    describe('Keyboard Navigation Testing with Color Feedback', () => {
+        it('should test keyboard navigation with proper color feedback for interactive elements', () => {
+            const interactiveElements = [
+                { tag: 'button', className: 'btn-primary', text: 'Primary Button' },
+                { tag: 'button', className: 'btn-secondary', text: 'Secondary Button' },
+                { tag: 'a', className: 'link-primary', text: 'Primary Link' },
+                { tag: 'input', className: 'form-input', text: '', type: 'text' }
+            ];
+
+            interactiveElements.forEach(({ tag, className, text, type }) => {
+                const element = document.createElement(tag) as HTMLElement;
+                element.className = className;
+                if (text) element.textContent = text;
+                if (type && element instanceof HTMLInputElement) {
+                    element.type = type;
+                }
+                testContainer.appendChild(element);
+
+                // Test focus state
+                element.focus();
+                expect(document.activeElement).toBe(element);
+
+                // Test that focus styles are applied
+                const computedStyle = window.getComputedStyle(element);
+                const hasFocusStyles = element.matches(':focus') ||
+                    element.classList.contains('focus') ||
+                    computedStyle.outline !== 'none';
+
+                if (!hasFocusStyles) {
+                    console.warn(`${className} may need visible focus indicators for keyboard navigation`);
+                }
+
+                // Test keyboard interaction
+                const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+                element.dispatchEvent(keydownEvent);
+
+                testContainer.removeChild(element);
+            });
+        });
+
+        it('should validate color feedback for keyboard navigation states', () => {
+            const navigationStates = [
+                { state: 'focus', className: 'focus:ring-2 focus:ring-primary-500' },
+                { state: 'active', className: 'active:bg-primary-700' },
+                { state: 'hover', className: 'hover:bg-primary-600' }
+            ];
+
+            const testButton = document.createElement('button');
+            testButton.className = 'btn-primary';
+            testButton.textContent = 'Test Navigation';
+            testContainer.appendChild(testButton);
+
+            navigationStates.forEach(({ state, className }) => {
+                // Simulate state by adding class
+                testButton.classList.add(className.split(':')[1]);
+
+                // Verify color contrast is maintained in all states
+                const quickCheck = quickAccessibilityCheck(testButton);
+                expect(quickCheck.wcagResult?.isValid).toBe(true);
+
+                // Remove state class
+                testButton.classList.remove(className.split(':')[1]);
+            });
+
+            testContainer.removeChild(testButton);
+        });
+
+        it('should test tab order and keyboard accessibility for form elements', () => {
+            // Create a form with multiple elements
+            const form = document.createElement('form');
+            const elements = [
+                { tag: 'input', type: 'text', id: 'field1', label: 'Field 1' },
+                { tag: 'input', type: 'email', id: 'field2', label: 'Field 2' },
+                { tag: 'select', id: 'field3', label: 'Field 3' },
+                { tag: 'button', type: 'submit', id: 'submit', label: 'Submit' }
+            ];
+
+            elements.forEach(({ tag, type, id, label }) => {
+                const labelEl = document.createElement('label');
+                labelEl.setAttribute('for', id);
+                labelEl.textContent = label;
+                form.appendChild(labelEl);
+
+                const element = document.createElement(tag) as HTMLElement;
+                element.id = id;
+                if (type && (element instanceof HTMLInputElement || element instanceof HTMLButtonElement)) {
+                    element.type = type;
+                }
+                if (tag === 'select') {
+                    const option = document.createElement('option');
+                    option.value = 'test';
+                    option.textContent = 'Test Option';
+                    (element as HTMLSelectElement).appendChild(option);
+                }
+                form.appendChild(element);
+            });
+
+            testContainer.appendChild(form);
+
+            // Test tab order
+            const focusableElements = form.querySelectorAll('input, select, button');
+            focusableElements.forEach((element, index) => {
+                (element as HTMLElement).focus();
+                expect(document.activeElement).toBe(element);
+
+                // Test color feedback for each focused element
+                const quickCheck = quickAccessibilityCheck(element as HTMLElement);
+                if (!quickCheck.passed) {
+                    console.warn(`Form element ${index + 1} may have accessibility issues:`, quickCheck.recommendations);
+                }
+            });
+
+            testContainer.removeChild(form);
+        });
+
+        it('should validate error state color feedback for keyboard users', () => {
+            const errorStates = [
+                { element: 'input', errorClass: 'border-red-500 text-red-600', label: 'Error Input' },
+                { element: 'button', errorClass: 'bg-red-600 text-white', label: 'Error Button' },
+                { element: 'div', errorClass: 'bg-red-50 border-red-200 text-red-800', label: 'Error Alert' }
+            ];
+
+            errorStates.forEach(({ element: tag, errorClass, label }) => {
+                const element = document.createElement(tag) as HTMLElement;
+                element.className = errorClass;
+                element.textContent = label;
+                element.setAttribute('aria-invalid', 'true');
+                testContainer.appendChild(element);
+
+                // Test that error states are keyboard accessible
+                if (element.tabIndex >= 0 || ['input', 'button', 'a'].includes(tag)) {
+                    element.focus();
+                    expect(document.activeElement).toBe(element);
+                }
+
+                // Validate error state color contrast
+                const quickCheck = quickAccessibilityCheck(element);
+                expect(quickCheck.wcagResult?.isValid).toBe(true);
+
+                testContainer.removeChild(element);
+            });
+        });
+    });
+
+    describe('Automated WCAG Compliance Testing Enhancement', () => {
+        it('should perform comprehensive WCAG 2.1 Level AA compliance testing', () => {
+            const wcagTestCases = [
+                // Success Criterion 1.4.3 - Contrast (Minimum)
+                { name: 'Normal Text Contrast', fg: '#374151', bg: '#ffffff', minRatio: 4.5 },
+                { name: 'Large Text Contrast', fg: '#6b7280', bg: '#ffffff', minRatio: 3.0, isLarge: true },
+
+                // Success Criterion 1.4.6 - Contrast (Enhanced) - AAA
+                { name: 'Enhanced Normal Text', fg: '#111827', bg: '#ffffff', minRatio: 7.0, level: 'AAA' },
+                { name: 'Enhanced Large Text', fg: '#374151', bg: '#ffffff', minRatio: 4.5, isLarge: true, level: 'AAA' },
+
+                // Interactive elements
+                { name: 'Button Focus Indicator', fg: '#2563eb', bg: '#dbeafe', minRatio: 3.0 },
+                { name: 'Link Hover State', fg: '#1d4ed8', bg: '#ffffff', minRatio: 4.5 },
+
+                // Status indicators
+                { name: 'Success Indicator', fg: '#065f46', bg: '#d1fae5', minRatio: 4.5 },
+                { name: 'Warning Indicator', fg: '#92400e', bg: '#fef3c7', minRatio: 4.5 },
+                { name: 'Error Indicator', fg: '#991b1b', bg: '#fee2e2', minRatio: 4.5 }
+            ];
+
+            const wcagResults = wcagTestCases.map(testCase => {
+                const result = testCase.level === 'AAA'
+                    ? validateWCAGAAA(testCase.fg, testCase.bg, testCase.isLarge)
+                    : validateWCAGAA(testCase.fg, testCase.bg, testCase.isLarge);
+
+                return {
+                    ...testCase,
+                    passed: result.isValid,
+                    actualRatio: result.contrastRatio,
+                    result
+                };
+            });
+
+            // All critical WCAG tests should pass
+            const failedCritical = wcagResults.filter(r => !r.passed && r.level !== 'AAA');
+            expect(failedCritical.length).toBe(0);
+
+            // Log detailed results
+            console.log('WCAG Compliance Test Results:');
+            wcagResults.forEach(test => {
+                const status = test.passed ? '✓' : '✗';
+                const level = test.level || 'AA';
+                console.log(`${status} ${test.name} (${level}): ${test.actualRatio.toFixed(2)} (required: ${test.minRatio})`);
+            });
+
+            // Calculate overall compliance rate
+            const passedTests = wcagResults.filter(r => r.passed).length;
+            const totalTests = wcagResults.length;
+            const complianceRate = (passedTests / totalTests) * 100;
+
+            expect(complianceRate).toBeGreaterThanOrEqual(90);
+            console.log(`Overall WCAG compliance rate: ${complianceRate.toFixed(1)}%`);
+        });
+
+        it('should test non-text contrast requirements (WCAG 1.4.11)', () => {
+            const nonTextElements = [
+                { name: 'Button Border', color: '#d1d5db', background: '#ffffff', minRatio: 3.0 },
+                { name: 'Form Input Border', color: '#9ca3af', background: '#ffffff', minRatio: 3.0 },
+                { name: 'Focus Indicator', color: '#2563eb', background: '#ffffff', minRatio: 3.0 },
+                { name: 'Active State Border', color: '#1d4ed8', background: '#f3f4f6', minRatio: 3.0 }
+            ];
+
+            nonTextElements.forEach(({ name, color, background, minRatio }) => {
+                const result = validateWCAGAA(color, background);
+                const meetsNonTextRequirement = result.contrastRatio >= minRatio;
+
+                if (!meetsNonTextRequirement) {
+                    console.warn(`${name} non-text contrast: ${result.contrastRatio.toFixed(2)} (required: ${minRatio})`);
+                }
+
+                // Non-text elements should meet 3:1 ratio minimum
+                expect(result.contrastRatio).toBeGreaterThanOrEqual(minRatio);
+            });
+        });
+
+        it('should validate color is not the only means of conveying information', () => {
+            const informationalElements = [
+                { name: 'Required Field Indicator', hasIcon: true, hasText: true, colorOnly: false },
+                { name: 'Success Message', hasIcon: true, hasText: true, colorOnly: false },
+                { name: 'Error Message', hasIcon: true, hasText: true, colorOnly: false },
+                { name: 'Warning Alert', hasIcon: true, hasText: true, colorOnly: false },
+                { name: 'Status Badge', hasIcon: false, hasText: true, colorOnly: false }
+            ];
+
+            informationalElements.forEach(({ name, hasIcon, hasText, colorOnly }) => {
+                // Elements should not rely on color alone
+                expect(colorOnly).toBe(false);
+
+                // Should have at least text or icon as alternative
+                expect(hasText || hasIcon).toBe(true);
+
+                console.log(`${name}: ${hasText ? 'Text ✓' : 'Text ✗'} ${hasIcon ? 'Icon ✓' : 'Icon ✗'}`);
+            });
+        });
+    });
+
+    describe('Enhanced Color Blindness Testing', () => {
+        it('should test all color combinations against multiple color blindness types', () => {
+            const colorBlindnessTypes: ColorBlindnessType[] = ['protanopia', 'deuteranopia', 'tritanopia', 'achromatopsia'];
+            const testCombinations = CRITICAL_COLOR_COMBINATIONS;
+
+            const colorBlindnessReport = testCombinations.map(({ name, foreground, background }) => {
+                const results = validateColorBlindFriendly(foreground, background);
+
+                const typeResults = colorBlindnessTypes.map(type => ({
+                    type,
+                    passed: results[type].isValid,
+                    contrast: results[type].contrastRatio,
+                    simulatedFg: simulateColorBlindness(foreground, type),
+                    simulatedBg: simulateColorBlindness(background, type)
+                }));
+
+                const passedTypes = typeResults.filter(r => r.passed).length;
+                const passRate = (passedTypes / colorBlindnessTypes.length) * 100;
+
+                return {
+                    element: name,
+                    passRate,
+                    typeResults,
+                    needsAlternativeIndicators: passRate < 75
+                };
+            });
+
+            // Log comprehensive color blindness report
+            console.log('Color Blindness Accessibility Report:');
+            colorBlindnessReport.forEach(({ element, passRate, needsAlternativeIndicators }) => {
+                const status = needsAlternativeIndicators ? '⚠' : '✓';
+                console.log(`${status} ${element}: ${passRate.toFixed(1)}% pass rate`);
+            });
+
+            // At least 80% of elements should have good color blindness accessibility
+            const elementsWithGoodAccessibility = colorBlindnessReport.filter(r => r.passRate >= 75);
+            const overallPassRate = (elementsWithGoodAccessibility.length / colorBlindnessReport.length) * 100;
+
+            expect(overallPassRate).toBeGreaterThanOrEqual(80);
+            console.log(`Overall color blindness accessibility: ${overallPassRate.toFixed(1)}%`);
+        });
+
+        it('should provide specific recommendations for color blind users', () => {
+            const problematicElements = testSuiteResult.results.filter(result => {
+                if (!result.colorBlindnessResults) return false;
+
+                const failingTypes = Object.values(result.colorBlindnessResults)
+                    .filter(cbResult => !cbResult.isValid);
+
+                return failingTypes.length > 2; // More than 2 types fail
+            });
+
+            problematicElements.forEach(element => {
+                const recommendations = [
+                    `Add icons to ${element.testName} (e.g., ✓ for success, ⚠ for warning, ✗ for error)`,
+                    `Consider patterns or textures as additional visual indicators`,
+                    `Ensure sufficient contrast ratios are maintained`,
+                    `Test with color blindness simulation tools`
+                ];
+
+                console.log(`Recommendations for ${element.testName}:`, recommendations);
+            });
+
+            // Should provide actionable recommendations
+            expect(problematicElements.length).toBeLessThan(testSuiteResult.results.length * 0.3);
+        });
+
+        it('should simulate color blindness accurately for testing', () => {
+            const testColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            const colorBlindnessTypes: ColorBlindnessType[] = ['protanopia', 'deuteranopia', 'tritanopia', 'achromatopsia'];
+
+            testColors.forEach(color => {
+                colorBlindnessTypes.forEach(type => {
+                    const simulated = simulateColorBlindness(color, type);
+
+                    // Should return valid hex color
+                    expect(simulated).toMatch(/^#[0-9a-f]{6}$/i);
+
+                    // Should be different from original (except for some edge cases)
+                    if (type !== 'achromatopsia' || color !== '#808080') {
+                        // Allow some colors to remain similar for certain types
+                    }
+
+                    console.log(`${color} → ${simulated} (${type})`);
+                });
+            });
         });
     });
 

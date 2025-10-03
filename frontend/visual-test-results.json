@@ -1,0 +1,3864 @@
+{
+  "config": {
+    "configFile": "D:\\Rokon\\learn\\frontend\\playwright-visual.config.ts",
+    "rootDir": "D:/Rokon/learn/frontend/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report-visual"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "visual-test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "chromium-desktop",
+        "name": "chromium-desktop",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "firefox-desktop",
+        "name": "firefox-desktop",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "webkit-desktop",
+        "name": "webkit-desktop",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "chromium-cross-browser",
+        "name": "chromium-cross-browser",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-cross-browser.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "firefox-cross-browser",
+        "name": "firefox-cross-browser",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-cross-browser.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "webkit-cross-browser",
+        "name": "webkit-cross-browser",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-cross-browser.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-mobile.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-safari",
+        "name": "mobile-safari",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-mobile.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "tablet-chrome",
+        "name": "tablet-chrome",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-mobile.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "high-dpi",
+        "name": "high-dpi",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "dark-mode-desktop",
+        "name": "dark-mode-desktop",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Rokon/learn/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "dark-mode-mobile",
+        "name": "dark-mode-mobile",
+        "testDir": "D:/Rokon/learn/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual-regression-mobile.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000,
+      "stdout": "ignore",
+      "stderr": "pipe"
+    }
+  },
+  "suites": [
+    {
+      "title": "visual-regression.spec.ts",
+      "file": "visual-regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Visual Regression Tests - Core Components",
+          "file": "visual-regression.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "color palette displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-03771cc732c5ce85084d",
+              "file": "visual-regression.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-5aec6f01e49ec43e963a",
+              "file": "visual-regression.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "accessibility demo displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-6cb39fdf6c6150d49777",
+              "file": "visual-regression.spec.ts",
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-705c23a789236cb42161",
+              "file": "visual-regression.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-0d08a545545e4f824a8f",
+              "file": "visual-regression.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "accessibility demo displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-f6f70e7500ee13fb8109",
+              "file": "visual-regression.spec.ts",
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-f8eac5ea05ec6d7b4140",
+              "file": "visual-regression.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-504129eb7232dc40f6fd",
+              "file": "visual-regression.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "accessibility demo displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-253397b98d0dbd6daca6",
+              "file": "visual-regression.spec.ts",
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-a8eb3e6ee654d14d2edd",
+              "file": "visual-regression.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-4233c97703130fec00c3",
+              "file": "visual-regression.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "accessibility demo displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-f29b7d758d1a3c64cb64",
+              "file": "visual-regression.spec.ts",
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-3796644428ffa5508629",
+              "file": "visual-regression.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-5e290152ca8f53938f2d",
+              "file": "visual-regression.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "accessibility demo displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-ccc0f1049c189e949201",
+              "file": "visual-regression.spec.ts",
+              "line": 43,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Dashboard Components",
+          "file": "visual-regression.spec.ts",
+          "line": 55,
+          "column": 6,
+          "specs": [
+            {
+              "title": "learner dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-c9153df230661292a57d",
+              "file": "visual-regression.spec.ts",
+              "line": 66,
+              "column": 9
+            },
+            {
+              "title": "course cards display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-f669b5c9ab23d7186da8",
+              "file": "visual-regression.spec.ts",
+              "line": 77,
+              "column": 9
+            },
+            {
+              "title": "learner dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-998f773a3fb466df7ba6",
+              "file": "visual-regression.spec.ts",
+              "line": 66,
+              "column": 9
+            },
+            {
+              "title": "course cards display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-643a28d131557ac659b0",
+              "file": "visual-regression.spec.ts",
+              "line": 77,
+              "column": 9
+            },
+            {
+              "title": "learner dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-e3dcce8688bbe9dae3a4",
+              "file": "visual-regression.spec.ts",
+              "line": 66,
+              "column": 9
+            },
+            {
+              "title": "course cards display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-b7c3a95833d82f215a9a",
+              "file": "visual-regression.spec.ts",
+              "line": 77,
+              "column": 9
+            },
+            {
+              "title": "learner dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-38ae99653eedca6bd0f8",
+              "file": "visual-regression.spec.ts",
+              "line": 66,
+              "column": 9
+            },
+            {
+              "title": "course cards display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-cf9d145b3bf1a6b3265c",
+              "file": "visual-regression.spec.ts",
+              "line": 77,
+              "column": 9
+            },
+            {
+              "title": "learner dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-104389631dc001971bf4",
+              "file": "visual-regression.spec.ts",
+              "line": 66,
+              "column": 9
+            },
+            {
+              "title": "course cards display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-96e6abb9d33c2888f470",
+              "file": "visual-regression.spec.ts",
+              "line": 77,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Course Catalog",
+          "file": "visual-regression.spec.ts",
+          "line": 93,
+          "column": 6,
+          "specs": [
+            {
+              "title": "course catalog displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-0f32364cba92dad67aa7",
+              "file": "visual-regression.spec.ts",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "course cards in catalog display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-29e1028ac81e85ee9dd0",
+              "file": "visual-regression.spec.ts",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "course catalog displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-1b4f6282336a01f0fb50",
+              "file": "visual-regression.spec.ts",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "course cards in catalog display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-bf76ca29d559d760b4e1",
+              "file": "visual-regression.spec.ts",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "course catalog displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-8ba544106ed933c9552c",
+              "file": "visual-regression.spec.ts",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "course cards in catalog display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-735989647656b1c9d0ec",
+              "file": "visual-regression.spec.ts",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "course catalog displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-6c080b697ed93fd6f885",
+              "file": "visual-regression.spec.ts",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "course cards in catalog display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-c062bfc36cd9aba80318",
+              "file": "visual-regression.spec.ts",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "course catalog displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-679b99f505ec3e9b5052",
+              "file": "visual-regression.spec.ts",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "course cards in catalog display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-d1c659820e203f354b67",
+              "file": "visual-regression.spec.ts",
+              "line": 110,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Learning Interface",
+          "file": "visual-regression.spec.ts",
+          "line": 126,
+          "column": 6,
+          "specs": [
+            {
+              "title": "course player displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-0cd6ff3d8ef29da98477",
+              "file": "visual-regression.spec.ts",
+              "line": 143,
+              "column": 9
+            },
+            {
+              "title": "quiz interface displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-c4230274f8717c1a54f5",
+              "file": "visual-regression.spec.ts",
+              "line": 168,
+              "column": 9
+            },
+            {
+              "title": "course player displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-74abf7ffa23ac21e4830",
+              "file": "visual-regression.spec.ts",
+              "line": 143,
+              "column": 9
+            },
+            {
+              "title": "quiz interface displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9fec3497ad1548cd540b",
+              "file": "visual-regression.spec.ts",
+              "line": 168,
+              "column": 9
+            },
+            {
+              "title": "course player displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-fc2d153f71e2fb8be984",
+              "file": "visual-regression.spec.ts",
+              "line": 143,
+              "column": 9
+            },
+            {
+              "title": "quiz interface displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-d619e6a559cd9fe12e26",
+              "file": "visual-regression.spec.ts",
+              "line": 168,
+              "column": 9
+            },
+            {
+              "title": "course player displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9748dca19a13f1731119",
+              "file": "visual-regression.spec.ts",
+              "line": 143,
+              "column": 9
+            },
+            {
+              "title": "quiz interface displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-a6379a2c59fd6ad85808",
+              "file": "visual-regression.spec.ts",
+              "line": 168,
+              "column": 9
+            },
+            {
+              "title": "course player displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-0bdb8fa97efd7c400f9f",
+              "file": "visual-regression.spec.ts",
+              "line": 143,
+              "column": 9
+            },
+            {
+              "title": "quiz interface displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-765f24c0ee2fb46d2259",
+              "file": "visual-regression.spec.ts",
+              "line": 168,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Admin Interface",
+          "file": "visual-regression.spec.ts",
+          "line": 192,
+          "column": 6,
+          "specs": [
+            {
+              "title": "admin dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9d98f1b7f71542749615",
+              "file": "visual-regression.spec.ts",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "theme configuration displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-67f55f138444bf62178f",
+              "file": "visual-regression.spec.ts",
+              "line": 220,
+              "column": 9
+            },
+            {
+              "title": "admin dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-4fed8bfb716cada17b0e",
+              "file": "visual-regression.spec.ts",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "theme configuration displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-876ddee66a7248a4b8c9",
+              "file": "visual-regression.spec.ts",
+              "line": 220,
+              "column": 9
+            },
+            {
+              "title": "admin dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-0dc7cb2f8e3be9118777",
+              "file": "visual-regression.spec.ts",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "theme configuration displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-7d9870da832d149e0485",
+              "file": "visual-regression.spec.ts",
+              "line": 220,
+              "column": 9
+            },
+            {
+              "title": "admin dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-36b94df52859d7c5e180",
+              "file": "visual-regression.spec.ts",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "theme configuration displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-842e4de7e14ea66bd9e8",
+              "file": "visual-regression.spec.ts",
+              "line": 220,
+              "column": 9
+            },
+            {
+              "title": "admin dashboard displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9e53e116dc35abb6bffa",
+              "file": "visual-regression.spec.ts",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "theme configuration displays correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-c8398033c7e3ccb62e70",
+              "file": "visual-regression.spec.ts",
+              "line": 220,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Form Components",
+          "file": "visual-regression.spec.ts",
+          "line": 242,
+          "column": 6,
+          "specs": [
+            {
+              "title": "form components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-da26077ceea86a080c96",
+              "file": "visual-regression.spec.ts",
+              "line": 248,
+              "column": 9
+            },
+            {
+              "title": "form validation states display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-7c8d2569726771b18766",
+              "file": "visual-regression.spec.ts",
+              "line": 260,
+              "column": 9
+            },
+            {
+              "title": "form components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-78ab2db15edec3dd5c04",
+              "file": "visual-regression.spec.ts",
+              "line": 248,
+              "column": 9
+            },
+            {
+              "title": "form validation states display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-7ea55a706bcf5796bf1a",
+              "file": "visual-regression.spec.ts",
+              "line": 260,
+              "column": 9
+            },
+            {
+              "title": "form components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9b47fb501804653c4679",
+              "file": "visual-regression.spec.ts",
+              "line": 248,
+              "column": 9
+            },
+            {
+              "title": "form validation states display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-819718c263057fb345a1",
+              "file": "visual-regression.spec.ts",
+              "line": 260,
+              "column": 9
+            },
+            {
+              "title": "form components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-5fbbc49a3c5920a43153",
+              "file": "visual-regression.spec.ts",
+              "line": 248,
+              "column": 9
+            },
+            {
+              "title": "form validation states display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-32742982c42f5a69d8d2",
+              "file": "visual-regression.spec.ts",
+              "line": 260,
+              "column": 9
+            },
+            {
+              "title": "form components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-9be708029e53c1f4487e",
+              "file": "visual-regression.spec.ts",
+              "line": 248,
+              "column": 9
+            },
+            {
+              "title": "form validation states display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-58d96f0dc4c210af71d9",
+              "file": "visual-regression.spec.ts",
+              "line": 260,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Visual Regression Tests - Loading States",
+          "file": "visual-regression.spec.ts",
+          "line": 279,
+          "column": 6,
+          "specs": [
+            {
+              "title": "loading components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-desktop",
+                  "projectName": "chromium-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-8c1a40eac547f5527114",
+              "file": "visual-regression.spec.ts",
+              "line": 285,
+              "column": 9
+            },
+            {
+              "title": "loading components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-desktop",
+                  "projectName": "firefox-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-8ded711933f42a163a15",
+              "file": "visual-regression.spec.ts",
+              "line": 285,
+              "column": 9
+            },
+            {
+              "title": "loading components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-desktop",
+                  "projectName": "webkit-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-c6f9fbb8e7617960831e",
+              "file": "visual-regression.spec.ts",
+              "line": 285,
+              "column": 9
+            },
+            {
+              "title": "loading components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "high-dpi",
+                  "projectName": "high-dpi",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-a6fed96c269d1b4d3612",
+              "file": "visual-regression.spec.ts",
+              "line": 285,
+              "column": 9
+            },
+            {
+              "title": "loading components display correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-desktop",
+                  "projectName": "dark-mode-desktop",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-d815eec695ed644b6423",
+              "file": "visual-regression.spec.ts",
+              "line": 285,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "visual-regression-cross-browser.spec.ts",
+      "file": "visual-regression-cross-browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cross-Browser Color Rendering Validation",
+          "file": "visual-regression-cross-browser.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "primary colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-791962c639f9df50dd0f",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "status colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-ef9e4f3d53b6f6a1ce60",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "neutral colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-512d00e2bc549c769249",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 52,
+              "column": 9
+            },
+            {
+              "title": "gradient and shadow effects render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-c3971d343a947f3a0194",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 70,
+              "column": 9
+            },
+            {
+              "title": "hover and focus states render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-bcdb1b1e98d5bcc35449",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 86,
+              "column": 9
+            },
+            {
+              "title": "color accessibility features render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-d2b6a4854c149d457f73",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 120,
+              "column": 9
+            },
+            {
+              "title": "primary colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-15153116e669a12cd441",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "status colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-3453e7191050010b6707",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "neutral colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-2900a22cae7c23e273c3",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 52,
+              "column": 9
+            },
+            {
+              "title": "gradient and shadow effects render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-f116ced5dab8bbf6be96",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 70,
+              "column": 9
+            },
+            {
+              "title": "hover and focus states render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-a8ea9ce31663c94d04c3",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 86,
+              "column": 9
+            },
+            {
+              "title": "color accessibility features render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-43f440073e495d1516a7",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 120,
+              "column": 9
+            },
+            {
+              "title": "primary colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-631396930db99367c633",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "status colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-6649f569fcaa894fcf3d",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 28,
+              "column": 9
+            },
+            {
+              "title": "neutral colors render consistently across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-be9aff936325a8fb6777",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 52,
+              "column": 9
+            },
+            {
+              "title": "gradient and shadow effects render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-fc8d205f742bd14fc71f",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 70,
+              "column": 9
+            },
+            {
+              "title": "hover and focus states render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-c94961e86acb384ceea0",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 86,
+              "column": 9
+            },
+            {
+              "title": "color accessibility features render consistently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-e77ade23613b33469af5",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 120,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Browser-Specific Color Rendering Edge Cases",
+          "file": "visual-regression-cross-browser.spec.ts",
+          "line": 144,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CSS custom properties render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-3d5146faf4e86a565b5b",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 150,
+              "column": 9
+            },
+            {
+              "title": "color transparency and opacity render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-a9490069c5f2f6093d5f",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 174,
+              "column": 9
+            },
+            {
+              "title": "color blending modes render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-416a8fecba60343381dd",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 199,
+              "column": 9
+            },
+            {
+              "title": "color gamut and wide color support",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-88328ceac755b61e8f2e",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 215,
+              "column": 9
+            },
+            {
+              "title": "CSS custom properties render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-daa17501846f904437a9",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 150,
+              "column": 9
+            },
+            {
+              "title": "color transparency and opacity render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-5729789e08049687b573",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 174,
+              "column": 9
+            },
+            {
+              "title": "color blending modes render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-e3a764c49616c5b9d00e",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 199,
+              "column": 9
+            },
+            {
+              "title": "color gamut and wide color support",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-7cb39d5461caabbb27f0",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 215,
+              "column": 9
+            },
+            {
+              "title": "CSS custom properties render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-f889b116431697e501e5",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 150,
+              "column": 9
+            },
+            {
+              "title": "color transparency and opacity render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-086559b9d8ab5b65e623",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 174,
+              "column": 9
+            },
+            {
+              "title": "color blending modes render correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-07dfd1c549555935b4d8",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 199,
+              "column": 9
+            },
+            {
+              "title": "color gamut and wide color support",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-d4be5145cd7eec66df55",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 215,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Color Rendering Performance Tests",
+          "file": "visual-regression-cross-browser.spec.ts",
+          "line": 235,
+          "column": 6,
+          "specs": [
+            {
+              "title": "large color grids render efficiently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-916b7a53317d4048689c",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 236,
+              "column": 9
+            },
+            {
+              "title": "CSS animation color transitions render smoothly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cross-browser",
+                  "projectName": "chromium-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-e02c384cf40df949798a",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 261,
+              "column": 9
+            },
+            {
+              "title": "large color grids render efficiently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-e7016648bae9f486b208",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 236,
+              "column": 9
+            },
+            {
+              "title": "CSS animation color transitions render smoothly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox-cross-browser",
+                  "projectName": "firefox-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-ca4ce0a41cf9906507f7",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 261,
+              "column": 9
+            },
+            {
+              "title": "large color grids render efficiently",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-5fbad15627f662855106",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 236,
+              "column": 9
+            },
+            {
+              "title": "CSS animation color transitions render smoothly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit-cross-browser",
+                  "projectName": "webkit-cross-browser",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d55724dab4622ffb42e6-e62dad460b188a36f232",
+              "file": "visual-regression-cross-browser.spec.ts",
+              "line": 261,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "visual-regression-mobile.spec.ts",
+      "file": "visual-regression-mobile.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Mobile Visual Regression Tests",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "color palette displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-92df435aeb0ec35f1096",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-74161119968dafb7546e",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "navigation displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-14fb6030dd828f548fa2",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 42,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-56882749ee06562e8089",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-07fbd1cac5b33729af0c",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "navigation displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-55b815b0683a2e49f030",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 42,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-cecad1d94cdc7cedba5a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c1124210ef5dc0559865",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "navigation displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-2c3c6cf125023e111f8a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 42,
+              "column": 9
+            },
+            {
+              "title": "color palette displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-09cb951837c24a30435f",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "component showcase displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-10a61fee30de74e9d9ab",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "navigation displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-5f8a7ecd6be4a32227e8",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 42,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Mobile Touch Interactions and Color Feedback",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 65,
+          "column": 6,
+          "specs": [
+            {
+              "title": "touch interactions show proper color feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-7af4326f9139cd6b44d3",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 71,
+              "column": 9
+            },
+            {
+              "title": "mobile form interactions display correct colors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-4d90cb46cd337ca6629a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 95,
+              "column": 9
+            },
+            {
+              "title": "mobile dashboard displays colors correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-4a4a9c0a664d9191d97b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 121,
+              "column": 9
+            },
+            {
+              "title": "touch interactions show proper color feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-752ec08d53a2d5759a06",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 71,
+              "column": 9
+            },
+            {
+              "title": "mobile form interactions display correct colors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-2b0ab0c472d47605e17b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 95,
+              "column": 9
+            },
+            {
+              "title": "mobile dashboard displays colors correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-4e9ee67544d0ec18058e",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 121,
+              "column": 9
+            },
+            {
+              "title": "touch interactions show proper color feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-6868f1540cb0d3c82211",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 71,
+              "column": 9
+            },
+            {
+              "title": "mobile form interactions display correct colors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-0a3e8f19d6985181d8b7",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 95,
+              "column": 9
+            },
+            {
+              "title": "mobile dashboard displays colors correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-954369e7785553ba0ad1",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 121,
+              "column": 9
+            },
+            {
+              "title": "touch interactions show proper color feedback",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c36feaa870cbec468a20",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 71,
+              "column": 9
+            },
+            {
+              "title": "mobile form interactions display correct colors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-866b77843216dac9e997",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 95,
+              "column": 9
+            },
+            {
+              "title": "mobile dashboard displays colors correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-9910b386f58cf91b8513",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 121,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Mobile Responsive Color Breakpoints",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 147,
+          "column": 6,
+          "specs": [
+            {
+              "title": "color system adapts correctly at small-mobile (320x568)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c352ae524397a0b9daab",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at mobile (375x667)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-689d41a96f62c19aeb4b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at large-mobile (414x896)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-7235e83ae79a67785e7e",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-portrait (768x1024)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-4d1ce11576c36b7ecda5",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-landscape (1024x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-7448f7cf2df7f193a707",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at small-mobile (320x568)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-ffee2fad018544e0b238",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at mobile (375x667)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-d97ce828b5a96d73a56b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at large-mobile (414x896)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-31c6906d3e5a4875c361",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-portrait (768x1024)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-d97b092d3f93073fb114",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-landscape (1024x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-5295d47c292ce509613a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at small-mobile (320x568)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-ddaff421faf44dc199e9",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at mobile (375x667)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-349b24f6bce28c3d785b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at large-mobile (414x896)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-d28c8a93bfaed1679c1a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-portrait (768x1024)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-981afcf787312f4ae2d2",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-landscape (1024x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-1ca78e87e58756178b99",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at small-mobile (320x568)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-527b7f501e58e71d626f",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at mobile (375x667)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-d74124b5a591c40123a2",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at large-mobile (414x896)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-0fa52aac3bc4eee71c3b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-portrait (768x1024)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-802aa2f7807c535812ec",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            },
+            {
+              "title": "color system adapts correctly at tablet-landscape (1024x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-7dd42773fdc5b8e08195",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 157,
+              "column": 13
+            }
+          ]
+        },
+        {
+          "title": "Mobile Dark Mode Color Testing",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 175,
+          "column": 6,
+          "specs": [
+            {
+              "title": "dark mode colors display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-6f8c4f4e22aea16e30b6",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 182,
+              "column": 9
+            },
+            {
+              "title": "dark mode dashboard displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-482421d712368597bbdd",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 194,
+              "column": 9
+            },
+            {
+              "title": "dark mode colors display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-7339de7463dc073e30f8",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 182,
+              "column": 9
+            },
+            {
+              "title": "dark mode dashboard displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c33654063bd9085d8427",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 194,
+              "column": 9
+            },
+            {
+              "title": "dark mode colors display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-edde804f6071f7b39931",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 182,
+              "column": 9
+            },
+            {
+              "title": "dark mode dashboard displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-0df07071e83c5d42466b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 194,
+              "column": 9
+            },
+            {
+              "title": "dark mode colors display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-d7b3ab0f5800dda7a212",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 182,
+              "column": 9
+            },
+            {
+              "title": "dark mode dashboard displays correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-33747ddfbea6e66d562d",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 194,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Mobile Accessibility Color Testing",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 208,
+          "column": 6,
+          "specs": [
+            {
+              "title": "high contrast mode works on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-dfd72bd9dbe75f00cf10",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 214,
+              "column": 9
+            },
+            {
+              "title": "reduced motion affects color transitions on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-be7e0995ae0d40006f7c",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "mobile color blind simulation works correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-f6d6e00f2bcabf044d22",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 241,
+              "column": 9
+            },
+            {
+              "title": "high contrast mode works on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-44dcfb88862d945bbe6b",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 214,
+              "column": 9
+            },
+            {
+              "title": "reduced motion affects color transitions on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-3cd8b54791f228559e82",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "mobile color blind simulation works correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-096f2f1cafdef1e902c2",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 241,
+              "column": 9
+            },
+            {
+              "title": "high contrast mode works on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-982aaef0cf995e0d741f",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 214,
+              "column": 9
+            },
+            {
+              "title": "reduced motion affects color transitions on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-8894b57d51b7e9658dd1",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "mobile color blind simulation works correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-50fe648589a2d78f77d5",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 241,
+              "column": 9
+            },
+            {
+              "title": "high contrast mode works on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-ba2a16ea2cceae9679a5",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 214,
+              "column": 9
+            },
+            {
+              "title": "reduced motion affects color transitions on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-90c3966ced900acb31bf",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "mobile color blind simulation works correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-549a0a78072c2dff43fc",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 241,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Mobile Performance Color Testing",
+          "file": "visual-regression-mobile.spec.ts",
+          "line": 269,
+          "column": 6,
+          "specs": [
+            {
+              "title": "mobile color rendering performance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-88128265c6e8a2c8081a",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 270,
+              "column": 9
+            },
+            {
+              "title": "mobile color rendering performance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-safari",
+                  "projectName": "mobile-safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-8b01ad690dae06736e01",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 270,
+              "column": 9
+            },
+            {
+              "title": "mobile color rendering performance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "tablet-chrome",
+                  "projectName": "tablet-chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c0692099a49f12d064cc",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 270,
+              "column": 9
+            },
+            {
+              "title": "mobile color rendering performance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "dark-mode-mobile",
+                  "projectName": "dark-mode-mobile",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c73a8dcc8e57be5d41c5-c1f3ee596dbc8819b3a8",
+              "file": "visual-regression-mobile.spec.ts",
+              "line": 270,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-03T15:11:30.938Z",
+    "duration": 172.25200000000007,
+    "expected": 0,
+    "skipped": 174,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

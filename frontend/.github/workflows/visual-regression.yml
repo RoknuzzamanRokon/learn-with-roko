@@ -1,0 +1,367 @@
+name: Visual Regression Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/visual-regression.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/visual-regression.yml"
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: "Test suite to run"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - desktop
+          - mobile
+          - crossBrowser
+          - components
+          - accessibility
+      update_screenshots:
+        description: "Update reference screenshots"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  visual-regression:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        include:
+          - browser: chromium
+            project: chromium-desktop
+          - browser: firefox
+            project: firefox-desktop
+          - browser: webkit
+            project: webkit-desktop
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Setup test environment
+        working-directory: frontend
+        run: |
+          # Create necessary directories
+          mkdir -p visual-test-results
+          mkdir -p playwright-report-visual
+
+          # Set up test data if needed
+          echo "Setting up test environment..."
+
+      - name: Build application
+        working-directory: frontend
+        run: npm run build
+
+      - name: Start application
+        working-directory: frontend
+        run: |
+          npm run start &
+          # Wait for application to be ready
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run visual regression tests
+        working-directory: frontend
+        run: |
+          if [ "${{ github.event.inputs.update_screenshots }}" = "true" ]; then
+            npm run test:visual:update
+          else
+            TEST_SUITE="${{ github.event.inputs.test_suite || 'all' }}"
+            node scripts/run-visual-tests.js $TEST_SUITE --report
+          fi
+        env:
+          CI: true
+          PLAYWRIGHT_BROWSERS_PATH: 0
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-test-results-${{ matrix.browser }}
+          path: |
+            frontend/visual-test-results/
+            frontend/playwright-report-visual/
+            frontend/test-results/
+          retention-days: 30
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: failed-screenshots-${{ matrix.browser }}
+          path: |
+            frontend/test-results/**/test-failed-*.png
+            frontend/test-results/**/test-actual-*.png
+            frontend/test-results/**/test-expected-*.png
+            frontend/test-results/**/test-diff-*.png
+          retention-days: 7
+
+      - name: Comment PR with results
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request' && failure()
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read test results
+            let comment = '## 🎨 Visual Regression Test Results\n\n';
+            comment += `❌ Visual regression tests failed for **${{ matrix.browser }}**\n\n`;
+            comment += 'Please review the uploaded screenshots and update reference images if the changes are intentional.\n\n';
+            comment += '### Actions:\n';
+            comment += '- Check the "failed-screenshots" artifact for visual differences\n';
+            comment += '- If changes are intentional, run: `npm run test:visual:update`\n';
+            comment += '- Commit the updated reference screenshots\n';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  mobile-visual-regression:
+    name: Mobile Visual Regression Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [mobile-chrome, mobile-safari, tablet-chrome]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Build application
+        working-directory: frontend
+        run: npm run build
+
+      - name: Start application
+        working-directory: frontend
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run mobile visual tests
+        working-directory: frontend
+        run: |
+          npx playwright test --config=playwright-visual.config.ts --project=${{ matrix.device }}
+        env:
+          CI: true
+
+      - name: Upload mobile test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-visual-results-${{ matrix.device }}
+          path: |
+            frontend/visual-test-results/
+            frontend/playwright-report-visual/
+            frontend/test-results/
+          retention-days: 30
+
+  cross-browser-validation:
+    name: Cross-Browser Color Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Build application
+        working-directory: frontend
+        run: npm run build
+
+      - name: Start application
+        working-directory: frontend
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run cross-browser tests
+        working-directory: frontend
+        run: npm run test:visual:cross-browser
+        env:
+          CI: true
+
+      - name: Upload cross-browser results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cross-browser-results
+          path: |
+            frontend/visual-test-results/
+            frontend/playwright-report-visual/
+            frontend/test-results/
+          retention-days: 30
+
+  accessibility-visual-tests:
+    name: Accessibility Visual Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Build application
+        working-directory: frontend
+        run: npm run build
+
+      - name: Start application
+        working-directory: frontend
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run accessibility visual tests
+        working-directory: frontend
+        run: npm run test:visual:accessibility
+        env:
+          CI: true
+
+      - name: Upload accessibility results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: accessibility-visual-results
+          path: |
+            frontend/visual-test-results/
+            frontend/playwright-report-visual/
+            frontend/test-results/
+          retention-days: 30
+
+  generate-report:
+    name: Generate Visual Test Report
+    runs-on: ubuntu-latest
+    needs:
+      [
+        visual-regression,
+        mobile-visual-regression,
+        cross-browser-validation,
+        accessibility-visual-tests,
+      ]
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Generate consolidated report
+        run: |
+          # Create consolidated report directory
+          mkdir -p consolidated-report
+
+          # Copy all test results
+          find artifacts -name "*.html" -exec cp {} consolidated-report/ \;
+          find artifacts -name "*.json" -exec cp {} consolidated-report/ \;
+
+          # Generate summary
+          echo "# Visual Regression Test Summary" > consolidated-report/README.md
+          echo "" >> consolidated-report/README.md
+          echo "Generated on: $(date)" >> consolidated-report/README.md
+          echo "Commit: ${{ github.sha }}" >> consolidated-report/README.md
+          echo "" >> consolidated-report/README.md
+
+          # List all test results
+          echo "## Test Results" >> consolidated-report/README.md
+          ls -la artifacts/ >> consolidated-report/README.md
+
+      - name: Upload consolidated report
+        uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-visual-report
+          path: consolidated-report/
+          retention-days: 90
+
+      - name: Deploy to GitHub Pages (if main branch)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: consolidated-report
+          destination_dir: visual-regression-reports/${{ github.run_number }}
