@@ -20,83 +20,67 @@ import {
     LectureCreate,
     LectureUpdate
 } from '../types/course';
+import { getAuthHeaders } from '../utils/auth';
+import { ApiService, getErrorMessage } from '../utils/api';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
-
-class CourseService {
-    private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
-        return {
-            'Content-Type': 'application/json',
-            ...(token && { 'Authorization': `Bearer ${token}` })
-        };
-    }
-
-    private async handleResponse<T>(response: Response): Promise<T> {
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
-        }
-        return response.json();
+class CourseService extends ApiService {
+    constructor() {
+        super();
     }
 
     // Course Category Methods
     async createCategory(categoryData: CourseCategoryCreate): Promise<CourseCategory> {
-        const response = await fetch(`${API_BASE_URL}/courses/categories`, {
-            method: 'POST',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(categoryData)
-        });
-        return this.handleResponse<CourseCategory>(response);
+        try {
+            return await this.post<CourseCategory>('/courses/categories', categoryData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCategories(includeInactive: boolean = false): Promise<CourseCategory[]> {
-        const params = new URLSearchParams();
-        if (includeInactive) {
-            params.append('include_inactive', 'true');
-        }
+        try {
+            const params = new URLSearchParams();
+            if (includeInactive) {
+                params.append('include_inactive', 'true');
+            }
 
-        const response = await fetch(`${API_BASE_URL}/courses/categories?${params}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<CourseCategory[]>(response);
+            return await this.get<CourseCategory[]>(`/courses/categories?${params}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCategoryById(categoryId: number): Promise<CourseCategory> {
-        const response = await fetch(`${API_BASE_URL}/courses/categories/${categoryId}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<CourseCategory>(response);
+        try {
+            return await this.get<CourseCategory>(`/courses/categories/${categoryId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async updateCategory(categoryId: number, categoryData: CourseCategoryUpdate): Promise<CourseCategory> {
-        const response = await fetch(`${API_BASE_URL}/courses/categories/${categoryId}`, {
-            method: 'PUT',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(categoryData)
-        });
-        return this.handleResponse<CourseCategory>(response);
+        try {
+            return await this.put<CourseCategory>(`/courses/categories/${categoryId}`, categoryData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async deleteCategory(categoryId: number): Promise<void> {
-        const response = await fetch(`${API_BASE_URL}/courses/categories/${categoryId}`, {
-            method: 'DELETE',
-            headers: await this.getAuthHeaders()
-        });
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        try {
+            await this.delete<void>(`/courses/categories/${categoryId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
     }
 
     // Course Methods
     async createCourse(courseData: CourseCreate): Promise<Course> {
-        const response = await fetch(`${API_BASE_URL}/courses`, {
-            method: 'POST',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(courseData)
-        });
-        return this.handleResponse<Course>(response);
+        try {
+            return await this.post<Course>('/courses', courseData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCourses(
@@ -104,168 +88,161 @@ class CourseService {
         page: number = 1,
         perPage: number = 20
     ): Promise<CourseListPaginatedResponse> {
-        const params = new URLSearchParams();
-        params.append('page', page.toString());
-        params.append('per_page', perPage.toString());
+        try {
+            const params = new URLSearchParams();
+            params.append('page', page.toString());
+            params.append('per_page', perPage.toString());
 
-        if (filters) {
-            Object.entries(filters).forEach(([key, value]) => {
-                if (value !== undefined && value !== null && value !== '') {
-                    params.append(key, value.toString());
-                }
-            });
+            if (filters) {
+                Object.entries(filters).forEach(([key, value]) => {
+                    if (value !== undefined && value !== null && value !== '') {
+                        params.append(key, value.toString());
+                    }
+                });
+            }
+
+            return await this.get<CourseListPaginatedResponse>(`/courses?${params}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
-
-        const response = await fetch(`${API_BASE_URL}/courses?${params}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<CourseListPaginatedResponse>(response);
     }
 
     async getMyCourses(page: number = 1, perPage: number = 20): Promise<CourseListPaginatedResponse> {
-        const params = new URLSearchParams();
-        params.append('page', page.toString());
-        params.append('per_page', perPage.toString());
+        try {
+            const params = new URLSearchParams();
+            params.append('page', page.toString());
+            params.append('per_page', perPage.toString());
 
-        const response = await fetch(`${API_BASE_URL}/courses/my-courses?${params}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<CourseListPaginatedResponse>(response);
+            return await this.get<CourseListPaginatedResponse>(`/courses/my-courses?${params}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCourseById(courseId: number, includeSections: boolean = false): Promise<Course | CourseWithSections> {
-        const params = new URLSearchParams();
-        if (includeSections) {
-            params.append('include_sections', 'true');
-        }
+        try {
+            const params = new URLSearchParams();
+            if (includeSections) {
+                params.append('include_sections', 'true');
+            }
 
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}?${params}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<Course | CourseWithSections>(response);
+            return await this.get<Course | CourseWithSections>(`/courses/${courseId}?${params}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCourseWithSections(courseId: number): Promise<CourseWithSections> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}?include_sections=true`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<CourseWithSections>(response);
+        try {
+            return await this.get<CourseWithSections>(`/courses/${courseId}?include_sections=true`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async updateCourse(courseId: number, courseData: CourseUpdate): Promise<Course> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}`, {
-            method: 'PUT',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(courseData)
-        });
-        return this.handleResponse<Course>(response);
+        try {
+            return await this.put<Course>(`/courses/${courseId}`, courseData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async updateCourseStatus(courseId: number, statusData: CourseStatusUpdate): Promise<Course> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}/status`, {
-            method: 'PUT',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(statusData)
-        });
-        return this.handleResponse<Course>(response);
+        try {
+            return await this.put<Course>(`/courses/${courseId}/status`, statusData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async deleteCourse(courseId: number): Promise<void> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}`, {
-            method: 'DELETE',
-            headers: await this.getAuthHeaders()
-        });
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        try {
+            await this.delete<void>(`/courses/${courseId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
     }
 
     // Section Methods
     async createSection(courseId: number, sectionData: SectionCreate): Promise<Section> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}/sections`, {
-            method: 'POST',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(sectionData)
-        });
-        return this.handleResponse<Section>(response);
+        try {
+            return await this.post<Section>(`/courses/${courseId}/sections`, sectionData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getCourseSections(courseId: number): Promise<Section[]> {
-        const response = await fetch(`${API_BASE_URL}/courses/${courseId}/sections`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<Section[]>(response);
+        try {
+            return await this.get<Section[]>(`/courses/${courseId}/sections`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getSectionById(sectionId: number): Promise<Section> {
-        const response = await fetch(`${API_BASE_URL}/courses/sections/${sectionId}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<Section>(response);
+        try {
+            return await this.get<Section>(`/courses/sections/${sectionId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async updateSection(sectionId: number, sectionData: SectionUpdate): Promise<Section> {
-        const response = await fetch(`${API_BASE_URL}/courses/sections/${sectionId}`, {
-            method: 'PUT',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(sectionData)
-        });
-        return this.handleResponse<Section>(response);
+        try {
+            return await this.put<Section>(`/courses/sections/${sectionId}`, sectionData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async deleteSection(sectionId: number): Promise<void> {
-        const response = await fetch(`${API_BASE_URL}/courses/sections/${sectionId}`, {
-            method: 'DELETE',
-            headers: await this.getAuthHeaders()
-        });
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        try {
+            await this.delete<void>(`/courses/sections/${sectionId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
     }
 
     // Lecture Methods
     async createLecture(sectionId: number, lectureData: LectureCreate): Promise<Lecture> {
-        const response = await fetch(`${API_BASE_URL}/courses/sections/${sectionId}/lectures`, {
-            method: 'POST',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(lectureData)
-        });
-        return this.handleResponse<Lecture>(response);
+        try {
+            return await this.post<Lecture>(`/courses/sections/${sectionId}/lectures`, lectureData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getSectionLectures(sectionId: number): Promise<Lecture[]> {
-        const response = await fetch(`${API_BASE_URL}/courses/sections/${sectionId}/lectures`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<Lecture[]>(response);
+        try {
+            return await this.get<Lecture[]>(`/courses/sections/${sectionId}/lectures`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async getLectureById(lectureId: number): Promise<Lecture> {
-        const response = await fetch(`${API_BASE_URL}/courses/lectures/${lectureId}`, {
-            headers: await this.getAuthHeaders()
-        });
-        return this.handleResponse<Lecture>(response);
+        try {
+            return await this.get<Lecture>(`/courses/lectures/${lectureId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async updateLecture(lectureId: number, lectureData: LectureUpdate): Promise<Lecture> {
-        const response = await fetch(`${API_BASE_URL}/courses/lectures/${lectureId}`, {
-            method: 'PUT',
-            headers: await this.getAuthHeaders(),
-            body: JSON.stringify(lectureData)
-        });
-        return this.handleResponse<Lecture>(response);
+        try {
+            return await this.put<Lecture>(`/courses/lectures/${lectureId}`, lectureData, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 
     async deleteLecture(lectureId: number): Promise<void> {
-        const response = await fetch(`${API_BASE_URL}/courses/lectures/${lectureId}`, {
-            method: 'DELETE',
-            headers: await this.getAuthHeaders()
-        });
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+        try {
+            await this.delete<void>(`/courses/lectures/${lectureId}`, await getAuthHeaders());
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
     }
 
@@ -275,25 +252,31 @@ class CourseService {
         page: number = 1,
         perPage: number = 20
     ): Promise<CourseListPaginatedResponse> {
-        const params = new URLSearchParams();
-        params.append('page', page.toString());
-        params.append('per_page', perPage.toString());
+        try {
+            const params = new URLSearchParams();
+            params.append('page', page.toString());
+            params.append('per_page', perPage.toString());
 
-        if (filters) {
-            Object.entries(filters).forEach(([key, value]) => {
-                if (value !== undefined && value !== null && value !== '') {
-                    params.append(key, value.toString());
-                }
-            });
+            if (filters) {
+                Object.entries(filters).forEach(([key, value]) => {
+                    if (value !== undefined && value !== null && value !== '') {
+                        params.append(key, value.toString());
+                    }
+                });
+            }
+
+            return await this.get<CourseListPaginatedResponse>(`/courses/catalog?${params}`);
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
         }
-
-        const response = await fetch(`${API_BASE_URL}/courses/catalog?${params}`);
-        return this.handleResponse<CourseListPaginatedResponse>(response);
     }
 
     async getCourseCatalogDetail(courseId: number): Promise<CourseWithSections> {
-        const response = await fetch(`${API_BASE_URL}/courses/catalog/${courseId}`);
-        return this.handleResponse<CourseWithSections>(response);
+        try {
+            return await this.get<CourseWithSections>(`/courses/catalog/${courseId}`);
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
     }
 }
 

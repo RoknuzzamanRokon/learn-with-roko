@@ -2,6 +2,8 @@
  * Service for Q&A and discussion API operations
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import {
     QAQuestion, QAQuestionCreate, QAQuestionUpdate, QAQuestionListResponse,
     QAAnswer, QAAnswerCreate, QAAnswerUpdate,
@@ -12,7 +14,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/a
 
 class QAService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -31,7 +33,7 @@ class QAService {
     async createQuestion(questionData: QAQuestionCreate): Promise<QAQuestion> {
         const response = await fetch(`${API_BASE_URL}/qa/questions`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(questionData),
         });
 
@@ -51,7 +53,7 @@ class QAService {
 
         const response = await fetch(`${API_BASE_URL}/qa/questions?${params}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QAQuestionListResponse>(response);
@@ -60,7 +62,7 @@ class QAService {
     async getLectureQuestions(lectureId: number): Promise<QAQuestion[]> {
         const response = await fetch(`${API_BASE_URL}/qa/questions/lecture/${lectureId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QAQuestion[]>(response);
@@ -69,7 +71,7 @@ class QAService {
     async getQuestion(questionId: number): Promise<QAQuestion> {
         const response = await fetch(`${API_BASE_URL}/qa/questions/${questionId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QAQuestion>(response);
@@ -78,7 +80,7 @@ class QAService {
     async updateQuestion(questionId: number, questionData: QAQuestionUpdate): Promise<QAQuestion> {
         const response = await fetch(`${API_BASE_URL}/qa/questions/${questionId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(questionData),
         });
 
@@ -88,7 +90,7 @@ class QAService {
     async deleteQuestion(questionId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/qa/questions/${questionId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -101,7 +103,7 @@ class QAService {
     async createAnswer(answerData: QAAnswerCreate): Promise<QAAnswer> {
         const response = await fetch(`${API_BASE_URL}/qa/answers`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(answerData),
         });
 
@@ -111,7 +113,7 @@ class QAService {
     async updateAnswer(answerId: number, answerData: QAAnswerUpdate): Promise<QAAnswer> {
         const response = await fetch(`${API_BASE_URL}/qa/answers/${answerId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(answerData),
         });
 
@@ -121,7 +123,7 @@ class QAService {
     async deleteAnswer(answerId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/qa/answers/${answerId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -134,7 +136,7 @@ class QAService {
     async moderateQuestion(questionId: number, moderationData: QAModerationAction): Promise<QAQuestion> {
         const response = await fetch(`${API_BASE_URL}/qa/questions/${questionId}/moderate`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(moderationData),
         });
 
@@ -144,7 +146,7 @@ class QAService {
     async moderateAnswer(answerId: number, moderationData: QAAnswerModerationAction): Promise<QAAnswer> {
         const response = await fetch(`${API_BASE_URL}/qa/answers/${answerId}/moderate`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(moderationData),
         });
 

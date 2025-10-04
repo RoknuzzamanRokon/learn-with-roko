@@ -2,6 +2,8 @@
  * Service for communication API calls (announcements and messaging)
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 // Announcement interfaces
@@ -151,7 +153,7 @@ export interface CommunicationStats {
 
 class CommunicationService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { Authorization: `Bearer ${token}` }),
@@ -170,7 +172,7 @@ class CommunicationService {
     async createAnnouncement(announcementData: AnnouncementCreate): Promise<Announcement> {
         const response = await fetch(`${API_BASE_URL}/communication/announcements`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(announcementData),
         });
         return this.handleResponse<Announcement>(response);
@@ -192,7 +194,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/announcements/course/${courseId}?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<AnnouncementListResponse>(response);
@@ -206,7 +208,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/announcements/${announcementId}`,
             {
                 method: 'PUT',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
                 body: JSON.stringify(updateData),
             }
         );
@@ -218,7 +220,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/announcements/${announcementId}`,
             {
                 method: 'DELETE',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<{ message: string }>(response);
@@ -231,7 +233,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/announcements/${announcementId}/read`,
             {
                 method: 'POST',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<{ message: string; was_unread: boolean }>(response);
@@ -241,7 +243,7 @@ class CommunicationService {
     async sendMessage(messageData: MessageCreate): Promise<Message> {
         const response = await fetch(`${API_BASE_URL}/communication/messages`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(messageData),
         });
         return this.handleResponse<Message>(response);
@@ -260,7 +262,7 @@ class CommunicationService {
 
         const response = await fetch(`${API_BASE_URL}/communication/messages?${params}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
         return this.handleResponse<MessageListResponse>(response);
     }
@@ -270,7 +272,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/messages/${messageId}/read`,
             {
                 method: 'POST',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<{ message: string }>(response);
@@ -280,7 +282,7 @@ class CommunicationService {
     async sendBulkMessage(bulkMessageData: BulkMessageCreate): Promise<BulkMessage> {
         const response = await fetch(`${API_BASE_URL}/communication/bulk-messages`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(bulkMessageData),
         });
         return this.handleResponse<BulkMessage>(response);
@@ -299,7 +301,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/bulk-messages?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<BulkMessageListResponse>(response);
@@ -316,7 +318,7 @@ class CommunicationService {
             `${API_BASE_URL}/communication/stats?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<CommunicationStats>(response);

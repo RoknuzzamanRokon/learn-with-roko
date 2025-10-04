@@ -2,6 +2,8 @@
  * Service for quiz-related API operations
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import {
     Quiz, QuizSummary, QuizCreate, QuizUpdate,
     Question, QuestionCreate, QuestionUpdate,
@@ -12,7 +14,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/a
 
 class QuizService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -31,7 +33,7 @@ class QuizService {
     async createQuiz(quizData: QuizCreate): Promise<Quiz> {
         const response = await fetch(`${API_BASE_URL}/quizzes/`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(quizData),
         });
 
@@ -41,7 +43,7 @@ class QuizService {
     async getCourseQuizzes(courseId: number): Promise<QuizSummary[]> {
         const response = await fetch(`${API_BASE_URL}/quizzes/course/${courseId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QuizSummary[]>(response);
@@ -50,7 +52,7 @@ class QuizService {
     async getQuiz(quizId: number): Promise<Quiz> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<Quiz>(response);
@@ -59,7 +61,7 @@ class QuizService {
     async updateQuiz(quizId: number, quizData: QuizUpdate): Promise<Quiz> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(quizData),
         });
 
@@ -69,7 +71,7 @@ class QuizService {
     async deleteQuiz(quizId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -82,7 +84,7 @@ class QuizService {
     async addQuestion(quizId: number, questionData: QuestionCreate): Promise<Question> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}/questions`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(questionData),
         });
 
@@ -92,7 +94,7 @@ class QuizService {
     async updateQuestion(questionId: number, questionData: QuestionUpdate): Promise<Question> {
         const response = await fetch(`${API_BASE_URL}/quizzes/questions/${questionId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(questionData),
         });
 
@@ -102,7 +104,7 @@ class QuizService {
     async deleteQuestion(questionId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/quizzes/questions/${questionId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -115,7 +117,7 @@ class QuizService {
     async startQuizAttempt(quizId: number): Promise<QuizAttempt> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}/attempts`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QuizAttempt>(response);
@@ -124,7 +126,7 @@ class QuizService {
     async submitQuizAttempt(attemptId: number, submission: QuizAttemptSubmission): Promise<QuizResult> {
         const response = await fetch(`${API_BASE_URL}/quizzes/attempts/${attemptId}/submit`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(submission),
         });
 
@@ -134,7 +136,7 @@ class QuizService {
     async getQuizAttempt(attemptId: number): Promise<QuizAttemptDetail> {
         const response = await fetch(`${API_BASE_URL}/quizzes/attempts/${attemptId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QuizAttemptDetail>(response);
@@ -143,7 +145,7 @@ class QuizService {
     async getUserQuizAttempts(quizId: number): Promise<QuizAttempt[]> {
         const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}/attempts`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<QuizAttempt[]>(response);

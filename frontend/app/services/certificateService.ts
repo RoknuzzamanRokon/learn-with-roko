@@ -2,6 +2,8 @@
  * Certificate service for API interactions
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import {
     Certificate,
     CertificateWithDetails,
@@ -13,7 +15,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/a
 
 class CertificateService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -26,7 +28,7 @@ class CertificateService {
     async getMyCertificates(): Promise<CertificateWithDetails[]> {
         const response = await fetch(`${API_BASE_URL}/certificates/my-certificates`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -42,7 +44,7 @@ class CertificateService {
     async checkCourseCompletion(courseId: number): Promise<CompletionStatus> {
         const response = await fetch(`${API_BASE_URL}/certificates/course/${courseId}/completion-status`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -58,7 +60,7 @@ class CertificateService {
     async generateCertificate(courseId: number): Promise<Certificate> {
         const response = await fetch(`${API_BASE_URL}/certificates/course/${courseId}/generate`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -75,7 +77,7 @@ class CertificateService {
     async downloadCertificate(certificateId: string): Promise<Blob> {
         const response = await fetch(`${API_BASE_URL}/certificates/download/${certificateId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -91,7 +93,7 @@ class CertificateService {
     async getCertificate(certificateId: string): Promise<CertificateWithDetails> {
         const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {

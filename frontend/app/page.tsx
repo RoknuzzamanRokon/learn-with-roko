@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Navigation } from "./components/common/Navigation";
 import { useAuth } from "./contexts/AuthContext";
 
 export default function Home() {
@@ -9,7 +8,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600 text-lg">
@@ -21,9 +20,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <Navigation />
-
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Hero Section */}
       <div className="relative bg-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-50 to-accent-teal-50 opacity-50"></div>

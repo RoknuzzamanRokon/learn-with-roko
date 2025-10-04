@@ -2,6 +2,8 @@
  * Service for instructor analytics API calls
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export interface InstructorDashboardMetrics {
@@ -125,7 +127,7 @@ export interface StudentEngagementMetrics {
 
 class InstructorAnalyticsService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { Authorization: `Bearer ${token}` }),
@@ -143,7 +145,7 @@ class InstructorAnalyticsService {
     async getDashboardMetrics(): Promise<InstructorDashboardMetrics> {
         const response = await fetch(`${API_BASE_URL}/instructor/analytics/dashboard`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
         return this.handleResponse<InstructorDashboardMetrics>(response);
     }
@@ -160,7 +162,7 @@ class InstructorAnalyticsService {
             `${API_BASE_URL}/instructor/analytics/course-performance?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<CoursePerformanceAnalytics>(response);
@@ -174,7 +176,7 @@ class InstructorAnalyticsService {
             `${API_BASE_URL}/instructor/analytics/student-progress?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<StudentProgressTracking>(response);
@@ -188,7 +190,7 @@ class InstructorAnalyticsService {
             `${API_BASE_URL}/instructor/analytics/quiz-scores?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<QuizScoreAnalytics>(response);
@@ -202,7 +204,7 @@ class InstructorAnalyticsService {
             `${API_BASE_URL}/instructor/analytics/student-engagement?${params}`,
             {
                 method: 'GET',
-                headers: await this.getAuthHeaders(),
+                headers: await getAuthHeaders(),
             }
         );
         return this.handleResponse<StudentEngagementMetrics>(response);

@@ -71,7 +71,8 @@ export default function FileUpload({
     setUploadProgress(0);
 
     try {
-      const token = localStorage.getItem("access_token");
+      const { getAuthToken } = await import("../../utils/auth");
+      const token = getAuthToken();
       if (!token) {
         throw new Error("Authentication required");
       }

@@ -2,13 +2,15 @@
  * Service for resource-related API operations
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import { LectureResource, LectureResourceCreate, LectureResourceUpdate } from '../types/resource';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 class ResourceService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -26,7 +28,7 @@ class ResourceService {
     async createResource(resourceData: LectureResourceCreate): Promise<LectureResource> {
         const response = await fetch(`${API_BASE_URL}/resources/`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(resourceData),
         });
 
@@ -36,7 +38,7 @@ class ResourceService {
     async getLectureResources(lectureId: number): Promise<LectureResource[]> {
         const response = await fetch(`${API_BASE_URL}/resources/lecture/${lectureId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<LectureResource[]>(response);
@@ -45,7 +47,7 @@ class ResourceService {
     async getResource(resourceId: number): Promise<LectureResource> {
         const response = await fetch(`${API_BASE_URL}/resources/${resourceId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<LectureResource>(response);
@@ -54,7 +56,7 @@ class ResourceService {
     async updateResource(resourceId: number, resourceData: LectureResourceUpdate): Promise<LectureResource> {
         const response = await fetch(`${API_BASE_URL}/resources/${resourceId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(resourceData),
         });
 
@@ -64,7 +66,7 @@ class ResourceService {
     async deleteResource(resourceId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/resources/${resourceId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {
@@ -74,7 +76,7 @@ class ResourceService {
     }
 
     async downloadResource(resourceId: number): Promise<void> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         const headers: HeadersInit = {
             ...(token && { 'Authorization': `Bearer ${token}` }),
         };

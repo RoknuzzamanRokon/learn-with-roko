@@ -2,6 +2,8 @@
  * Transaction service for handling financial operations.
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import {
     Transaction,
     TransactionListResponse,
@@ -25,7 +27,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/a
 
 class TransactionService {
     private async fetchWithAuth(url: string, options: RequestInit = {}) {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
 
         const response = await fetch(`${API_BASE_URL}${url}`, {
             ...options,
@@ -318,7 +320,7 @@ class TransactionService {
             params.append('instructor_id', instructorId.toString());
         }
 
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         const response = await fetch(`${API_BASE_URL}/transactions/tax/export/payouts?${params}`, {
             headers: {
                 ...(token && { Authorization: `Bearer ${token}` }),
@@ -337,7 +339,7 @@ class TransactionService {
             tax_year: taxYear.toString(),
         });
 
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         const response = await fetch(`${API_BASE_URL}/transactions/tax/export/revenue?${params}`, {
             headers: {
                 ...(token && { Authorization: `Bearer ${token}` }),

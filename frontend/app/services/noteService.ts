@@ -2,13 +2,15 @@
  * Service for note-related API operations
  */
 
+import { getAuthHeaders } from '../utils/auth';
+
 import { Note, NoteCreate, NoteUpdate, NoteListResponse, NoteSearchFilters } from '../types/note';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 class NoteService {
     private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
+        const token = require('../utils/auth').getAuthToken();
         return {
             'Content-Type': 'application/json',
             ...(token && { 'Authorization': `Bearer ${token}` }),
@@ -26,7 +28,7 @@ class NoteService {
     async createNote(noteData: NoteCreate): Promise<Note> {
         const response = await fetch(`${API_BASE_URL}/notes/`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(noteData),
         });
 
@@ -44,7 +46,7 @@ class NoteService {
 
         const response = await fetch(`${API_BASE_URL}/notes/?${params}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<NoteListResponse>(response);
@@ -53,7 +55,7 @@ class NoteService {
     async getLectureNotes(lectureId: number): Promise<Note[]> {
         const response = await fetch(`${API_BASE_URL}/notes/lecture/${lectureId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<Note[]>(response);
@@ -62,7 +64,7 @@ class NoteService {
     async getNote(noteId: number): Promise<Note> {
         const response = await fetch(`${API_BASE_URL}/notes/${noteId}`, {
             method: 'GET',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         return this.handleResponse<Note>(response);
@@ -71,7 +73,7 @@ class NoteService {
     async updateNote(noteId: number, noteData: NoteUpdate): Promise<Note> {
         const response = await fetch(`${API_BASE_URL}/notes/${noteId}`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(noteData),
         });
 
@@ -81,7 +83,7 @@ class NoteService {
     async deleteNote(noteId: number): Promise<void> {
         const response = await fetch(`${API_BASE_URL}/notes/${noteId}`, {
             method: 'DELETE',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
         });
 
         if (!response.ok) {

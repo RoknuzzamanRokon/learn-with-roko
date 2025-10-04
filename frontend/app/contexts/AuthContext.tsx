@@ -271,45 +271,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return await refreshTokenInternal(refreshTokenValue);
   };
 
-  // Permission checking
+  // Permission checking using the comprehensive permission system
   const hasPermission = (permission: string): boolean => {
     if (!user) return false;
 
     // Super admin has all permissions
     if (user.role === "super_admin") return true;
 
-    // Basic permission mapping (this should match backend permissions)
-    const rolePermissions: Record<string, string[]> = {
-      instructor: [
-        "create_course",
-        "update_course",
-        "delete_course",
-        "publish_course",
-        "upload_content",
-        "update_content",
-        "delete_content",
-        "view_enrollments",
-        "view_own_analytics",
-        "answer_question",
-        "issue_certificate",
-      ],
-      learner: [
-        "enroll_course",
-        "view_progress",
-        "take_quiz",
-        "create_note",
-        "ask_question",
-        "view_certificates",
-      ],
-    };
-
-    const userPermissions = rolePermissions[user.role] || [];
-    return userPermissions.includes(permission);
+    // Import and use the comprehensive permission system
+    const { hasPermission: checkPermission } = require("../utils/permissions");
+    return checkPermission(user.role, permission);
   };
 
   // Role checking
   const hasRole = (role: string | string[]): boolean => {
     if (!user) return false;
+
+    // Super admin can assume any role
+    if (user.role === "super_admin") return true;
 
     if (Array.isArray(role)) {
       return role.includes(user.role);

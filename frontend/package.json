@@ -32,6 +32,7 @@
     "docs:colors:json": "node scripts/generate-color-docs.js --format=json",
     "docs:colors:css": "node scripts/generate-color-docs.js --format=css",
     "validate:css": "node scripts/validate-css.js",
+    "check:backend": "node scripts/check-backend.js",
     "msw:init": "msw init public/ --save"
   },
   "dependencies": {

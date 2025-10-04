@@ -14,14 +14,9 @@ import {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
+import { getAuthHeaders } from '../utils/auth';
+
 class EnrollmentService {
-    private async getAuthHeaders(): Promise<HeadersInit> {
-        const token = localStorage.getItem('access_token');
-        return {
-            'Content-Type': 'application/json',
-            ...(token && { 'Authorization': `Bearer ${token}` })
-        };
-    }
 
     private async handleResponse<T>(response: Response): Promise<T> {
         if (!response.ok) {
@@ -34,7 +29,7 @@ class EnrollmentService {
     async enrollInCourse(enrollmentData: EnrollmentCreate): Promise<Enrollment> {
         const response = await fetch(`${API_BASE_URL}/enrollments`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(enrollmentData)
         });
         return this.handleResponse<Enrollment>(response);
@@ -42,21 +37,21 @@ class EnrollmentService {
 
     async getMyEnrollments(): Promise<Enrollment[]> {
         const response = await fetch(`${API_BASE_URL}/enrollments`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<Enrollment[]>(response);
     }
 
     async getEnrollment(courseId: number): Promise<Enrollment> {
         const response = await fetch(`${API_BASE_URL}/enrollments/${courseId}`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<Enrollment>(response);
     }
 
     async getCourseProgress(courseId: number): Promise<CourseProgress> {
         const response = await fetch(`${API_BASE_URL}/enrollments/${courseId}/progress`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<CourseProgress>(response);
     }
@@ -64,7 +59,7 @@ class EnrollmentService {
     async updateLectureProgress(lectureId: number, progressData: LectureProgressUpdate): Promise<LectureProgress> {
         const response = await fetch(`${API_BASE_URL}/enrollments/lectures/${lectureId}/progress`, {
             method: 'PUT',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(progressData)
         });
         return this.handleResponse<LectureProgress>(response);
@@ -72,7 +67,7 @@ class EnrollmentService {
 
     async getLectureProgress(lectureId: number): Promise<LectureProgress> {
         const response = await fetch(`${API_BASE_URL}/enrollments/lectures/${lectureId}/progress`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<LectureProgress>(response);
     }
@@ -89,7 +84,7 @@ class EnrollmentService {
     async createPaymentIntent(paymentData: PaymentIntentCreate): Promise<PaymentIntentResponse> {
         const response = await fetch(`${API_BASE_URL}/enrollments/payment-intent`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(paymentData)
         });
         return this.handleResponse<PaymentIntentResponse>(response);
@@ -98,7 +93,7 @@ class EnrollmentService {
     async enrollWithPayment(enrollmentData: EnrollmentCreate, paymentIntentId: string): Promise<Enrollment> {
         const response = await fetch(`${API_BASE_URL}/enrollments/enroll-with-payment?payment_intent_id=${paymentIntentId}`, {
             method: 'POST',
-            headers: await this.getAuthHeaders(),
+            headers: await getAuthHeaders(),
             body: JSON.stringify(enrollmentData)
         });
         return this.handleResponse<Enrollment>(response);
@@ -106,21 +101,21 @@ class EnrollmentService {
 
     async getDashboardSummary(): Promise<any> {
         const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/summary`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<any>(response);
     }
 
     async getRecentActivity(limit: number = 5): Promise<any[]> {
         const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/recent-activity?limit=${limit}`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<any[]>(response);
     }
 
     async getEnrolledCoursesForDashboard(): Promise<any[]> {
         const response = await fetch(`${API_BASE_URL}/enrollments/dashboard/courses`, {
-            headers: await this.getAuthHeaders()
+            headers: await getAuthHeaders()
         });
         return this.handleResponse<any[]>(response);
     }
